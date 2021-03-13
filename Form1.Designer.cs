@@ -33,6 +33,7 @@ namespace Coursework_Game
             this.btnRegister = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.SplashBackground = new System.Windows.Forms.PictureBox();
+            this.btnHighscores = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.SplashBackground)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,11 +69,21 @@ namespace Coursework_Game
             this.SplashBackground.TabIndex = 2;
             this.SplashBackground.TabStop = false;
             // 
+            // btnHighscores
+            // 
+            this.btnHighscores.Location = new System.Drawing.Point(281, 284);
+            this.btnHighscores.Name = "btnHighscores";
+            this.btnHighscores.Size = new System.Drawing.Size(239, 110);
+            this.btnHighscores.TabIndex = 3;
+            this.btnHighscores.Text = "HighScores";
+            this.btnHighscores.UseVisualStyleBackColor = true;
+            // 
             // SplashScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnHighscores);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.SplashBackground);
@@ -89,6 +100,7 @@ namespace Coursework_Game
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.PictureBox SplashBackground;
+        private System.Windows.Forms.Button btnHighscores;
     }
 }
 
