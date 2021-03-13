@@ -16,7 +16,10 @@ namespace Coursework_Game
         public Register()
         {
             InitializeComponent();
-            users = new Dictionary<string, User>();
+            if (users==null)
+            {
+                users = new Dictionary<string, User>();
+            }
         }
 
         private void btnBackButton_Click(object sender, EventArgs e)
