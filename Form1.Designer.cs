@@ -34,6 +34,7 @@ namespace Coursework_Game
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnHighscores = new System.Windows.Forms.Button();
             this.SplashBackground = new System.Windows.Forms.PictureBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.SplashBackground)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,11 +84,22 @@ namespace Coursework_Game
             this.SplashBackground.TabIndex = 2;
             this.SplashBackground.TabStop = false;
             // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(200, 50);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(572, 57);
+            this.textBox1.TabIndex = 4;
+            this.textBox1.Text = "[PLACEHOLDER GAME TITLE]!";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // SplashScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 461);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnHighscores);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.btnRegister);
@@ -99,6 +111,7 @@ namespace Coursework_Game
             this.Text = "Register or Log in?";
             ((System.ComponentModel.ISupportInitialize)(this.SplashBackground)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -108,6 +121,7 @@ namespace Coursework_Game
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.PictureBox SplashBackground;
         private System.Windows.Forms.Button btnHighscores;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
