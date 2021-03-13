@@ -23,5 +23,12 @@ namespace Coursework_Game
             Register register = new Register();
             register.ShowDialog();
         }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Login login = new Login();
+            login.ShowDialog();
+        }
     }
 }

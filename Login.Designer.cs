@@ -1,7 +1,7 @@
 ﻿
 namespace Coursework_Game
 {
-    partial class Register
+    partial class Login
     {
         /// <summary>
         /// Required designer variable.
@@ -29,37 +29,38 @@ namespace Coursework_Game
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Register));
-            this.SplashBackground2 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.SplashBackground2)).BeginInit();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // SplashBackground2
+            // pictureBox1
             // 
-            this.SplashBackground2.BackgroundImage = global::Coursework_Game.Properties.Resources.BookCase;
-            this.SplashBackground2.Location = new System.Drawing.Point(-6, -4);
-            this.SplashBackground2.Name = "SplashBackground2";
-            this.SplashBackground2.Size = new System.Drawing.Size(494, 671);
-            this.SplashBackground2.TabIndex = 0;
-            this.SplashBackground2.TabStop = false;
+            this.pictureBox1.BackgroundImage = global::Coursework_Game.Properties.Resources.BookCase;
+            this.pictureBox1.Location = new System.Drawing.Point(-8, -3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(500, 670);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
-            // Register
+            // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 661);
-            this.Controls.Add(this.SplashBackground2);
+            this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Register";
+            this.Name = "Login";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Create Account";
-            ((System.ComponentModel.ISupportInitialize)(this.SplashBackground2)).EndInit();
+            this.Text = "Login";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox SplashBackground2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

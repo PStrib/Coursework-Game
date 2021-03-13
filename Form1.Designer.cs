@@ -32,8 +32,8 @@ namespace Coursework_Game
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashScreen));
             this.btnRegister = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
-            this.SplashBackground = new System.Windows.Forms.PictureBox();
             this.btnHighscores = new System.Windows.Forms.Button();
+            this.SplashBackground = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.SplashBackground)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,9 +41,10 @@ namespace Coursework_Game
             // 
             this.btnRegister.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRegister.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnRegister.Location = new System.Drawing.Point(89, 305);
+            this.btnRegister.Font = new System.Drawing.Font("Bahnschrift Condensed", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegister.Location = new System.Drawing.Point(75, 325);
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(142, 68);
+            this.btnRegister.Size = new System.Drawing.Size(166, 73);
             this.btnRegister.TabIndex = 0;
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = true;
@@ -53,42 +54,48 @@ namespace Coursework_Game
             // 
             this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogin.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnLogin.Location = new System.Drawing.Point(573, 305);
+            this.btnLogin.Font = new System.Drawing.Font("Bahnschrift Condensed", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.Location = new System.Drawing.Point(750, 325);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(142, 68);
+            this.btnLogin.Size = new System.Drawing.Size(166, 73);
             this.btnLogin.TabIndex = 1;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
-            // 
-            // SplashBackground
-            // 
-            this.SplashBackground.BackgroundImage = global::Coursework_Game.Properties.Resources.BookCase;
-            this.SplashBackground.Location = new System.Drawing.Point(-5, -5);
-            this.SplashBackground.Name = "SplashBackground";
-            this.SplashBackground.Size = new System.Drawing.Size(813, 464);
-            this.SplashBackground.TabIndex = 2;
-            this.SplashBackground.TabStop = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // btnHighscores
             // 
-            this.btnHighscores.Location = new System.Drawing.Point(281, 284);
+            this.btnHighscores.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHighscores.Font = new System.Drawing.Font("Bahnschrift Condensed", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHighscores.Location = new System.Drawing.Point(355, 300);
             this.btnHighscores.Name = "btnHighscores";
-            this.btnHighscores.Size = new System.Drawing.Size(239, 110);
+            this.btnHighscores.Size = new System.Drawing.Size(279, 118);
             this.btnHighscores.TabIndex = 3;
             this.btnHighscores.Text = "HighScores";
             this.btnHighscores.UseVisualStyleBackColor = true;
             // 
+            // SplashBackground
+            // 
+            this.SplashBackground.BackgroundImage = global::Coursework_Game.Properties.Resources.BookCase;
+            this.SplashBackground.Location = new System.Drawing.Point(-6, -5);
+            this.SplashBackground.Name = "SplashBackground";
+            this.SplashBackground.Size = new System.Drawing.Size(995, 473);
+            this.SplashBackground.TabIndex = 2;
+            this.SplashBackground.TabStop = false;
+            // 
             // SplashScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(984, 461);
             this.Controls.Add(this.btnHighscores);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.SplashBackground);
+            this.Font = new System.Drawing.Font("Harrington", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SplashScreen";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Register or Log in?";
             ((System.ComponentModel.ISupportInitialize)(this.SplashBackground)).EndInit();
             this.ResumeLayout(false);
