@@ -32,9 +32,9 @@ namespace Coursework_Game
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashScreen));
             this.btnRegister = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnHighscores = new System.Windows.Forms.Button();
             this.SplashBackground = new System.Windows.Forms.PictureBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.SplashBackground)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,7 +55,7 @@ namespace Coursework_Game
             // 
             this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogin.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnLogin.Font = new System.Drawing.Font("Bahnschrift Condensed", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.Font = new System.Drawing.Font("Bahnschrift Condensed", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.Location = new System.Drawing.Point(750, 325);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(166, 73);
@@ -63,6 +63,16 @@ namespace Coursework_Game
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(200, 50);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(572, 57);
+            this.textBox1.TabIndex = 4;
+            this.textBox1.Text = "[PLACEHOLDER GAME TITLE]!";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnHighscores
             // 
@@ -74,6 +84,7 @@ namespace Coursework_Game
             this.btnHighscores.TabIndex = 3;
             this.btnHighscores.Text = "HighScores";
             this.btnHighscores.UseVisualStyleBackColor = true;
+            this.btnHighscores.Click += new System.EventHandler(this.btnHighScores_Click);
             // 
             // SplashBackground
             // 
@@ -83,16 +94,6 @@ namespace Coursework_Game
             this.SplashBackground.Size = new System.Drawing.Size(995, 473);
             this.SplashBackground.TabIndex = 2;
             this.SplashBackground.TabStop = false;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(200, 50);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(572, 57);
-            this.textBox1.TabIndex = 4;
-            this.textBox1.Text = "[PLACEHOLDER GAME TITLE]!";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // SplashScreen
             // 

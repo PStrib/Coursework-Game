@@ -30,5 +30,12 @@ namespace Coursework_Game
             Login login = new Login();
             login.ShowDialog();
         }
+
+        private void btnHighScores_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            HighScores highscores = new HighScores();
+            highscores.ShowDialog();
+        }
     }
 }
