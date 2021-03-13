@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Security.Cryptography;
 
 namespace Coursework_Game
 {
@@ -44,7 +45,12 @@ namespace Coursework_Game
                 return;
             }
             User user = new User();
-            //string password = txtPassword1.Text;
+            string password = txtPassword1.Text;
+            byte[] bytes = Encoding.ASCII.GetBytes(password);
+            HashAlgorithm sha = SHA256.Create();
+            byte[] result = sha.ComputeHash(bytes);
+            MessageBox.Show(Convert.ToString(result));
+
             user.Username = txtUsername.Text;
             user.Forename = txtForename.Text;
             user.Surname = txtSurname.Text;
