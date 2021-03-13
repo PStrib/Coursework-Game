@@ -14,14 +14,17 @@ namespace Coursework_Game
     public partial class Register : Form
     {
         private static Dictionary<string,User> users;
+        public static Dictionary<string, User> Users { get => users; set => users = value; }
         public Register()
         {
             InitializeComponent();
-            if (users==null)
+            if (Users==null)
             {
-                users = new Dictionary<string, User>();
+                Users = new Dictionary<string, User>();
             }
         }
+
+
 
         private void btnBackButton_Click(object sender, EventArgs e)
         {
@@ -39,25 +42,25 @@ namespace Coursework_Game
             }
 
             string userName = txtUsername.Text;
-            if (users.ContainsKey(userName))
+            if (Users.ContainsKey(userName))
             {
                 MessageBox.Show("That username is already in use.");
                 return;
             }
             User user = new User();
             string password = txtPassword1.Text;
-            byte[] bytes = Encoding.ASCII.GetBytes(password);
+            byte[] bytes = Encoding.UTF8.GetBytes(password);
             HashAlgorithm sha = SHA256.Create();
             byte[] result = sha.ComputeHash(bytes);
-            MessageBox.Show(Convert.ToString(result));
+            MessageBox.Show(Encoding.UTF8.GetString(result,0,result.Length));
 
             user.Username = txtUsername.Text;
             user.Forename = txtForename.Text;
             user.Surname = txtSurname.Text;
-            user.Password = txtPassword1.Text;
-            users.Add(userName, user);
+            user.PasswordHash = result;
+            Users.Add(userName, user);
             MessageBox.Show("New User Created!");
-            MessageBox.Show(Convert.ToString(users.Count));
+            MessageBox.Show(Convert.ToString(Users.Count));
             this.Hide();
             SplashScreen splashscreen = new SplashScreen();
             splashscreen.ShowDialog();
