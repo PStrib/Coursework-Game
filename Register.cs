@@ -10,18 +10,11 @@ using System.Windows.Forms;
 
 namespace Coursework_Game
 {
-    public partial class SplashScreen : Form
+    public partial class Register : Form
     {
-        public SplashScreen()
+        public Register()
         {
             InitializeComponent();
-        }
-
-        private void btnRegister_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Register register = new Register();
-            register.ShowDialog();
         }
     }
 }

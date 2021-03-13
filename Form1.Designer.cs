@@ -1,7 +1,7 @@
 ﻿
 namespace Coursework_Game
 {
-    partial class Form1
+    partial class SplashScreen
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,7 @@ namespace Coursework_Game
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashScreen));
             this.btnRegister = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.SplashBackground = new System.Windows.Forms.PictureBox();
@@ -45,6 +46,7 @@ namespace Coursework_Game
             this.btnRegister.TabIndex = 0;
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = true;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
             // btnLogin
             // 
@@ -66,7 +68,7 @@ namespace Coursework_Game
             this.SplashBackground.TabIndex = 2;
             this.SplashBackground.TabStop = false;
             // 
-            // Form1
+            // SplashScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -74,8 +76,9 @@ namespace Coursework_Game
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.SplashBackground);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "SplashScreen";
+            this.Text = "Register or Log in?";
             ((System.ComponentModel.ISupportInitialize)(this.SplashBackground)).EndInit();
             this.ResumeLayout(false);
 
