@@ -67,7 +67,7 @@ namespace Coursework_Game
             // btnHighscores
             // 
             this.btnHighscores.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHighscores.Font = new System.Drawing.Font("Bahnschrift Condensed", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHighscores.Font = new System.Drawing.Font("Bahnschrift", 24.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHighscores.Location = new System.Drawing.Point(355, 300);
             this.btnHighscores.Name = "btnHighscores";
             this.btnHighscores.Size = new System.Drawing.Size(279, 118);

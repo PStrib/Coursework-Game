@@ -16,5 +16,12 @@ namespace Coursework_Game
         {
             InitializeComponent();
         }
+
+        private void btnBackButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            SplashScreen splashscreen = new SplashScreen();
+            splashscreen.ShowDialog();
+        }
     }
 }

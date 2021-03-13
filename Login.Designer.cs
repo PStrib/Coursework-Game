@@ -31,6 +31,7 @@ namespace Coursework_Game
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnBackButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,11 +44,23 @@ namespace Coursework_Game
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // btnBackButton
+            // 
+            this.btnBackButton.Font = new System.Drawing.Font("Bahnschrift Condensed", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBackButton.Location = new System.Drawing.Point(40, 40);
+            this.btnBackButton.Name = "btnBackButton";
+            this.btnBackButton.Size = new System.Drawing.Size(400, 40);
+            this.btnBackButton.TabIndex = 1;
+            this.btnBackButton.Text = "Go Back";
+            this.btnBackButton.UseVisualStyleBackColor = true;
+            this.btnBackButton.Click += new System.EventHandler(this.btnBackButton_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 661);
+            this.Controls.Add(this.btnBackButton);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Login";
@@ -62,5 +75,6 @@ namespace Coursework_Game
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnBackButton;
     }
 }
