@@ -23,5 +23,7 @@ namespace Coursework_Game
             SplashScreen splashscreen = new SplashScreen();
             splashscreen.ShowDialog();
         }
+
+
     }
 }
