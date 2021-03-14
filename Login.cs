@@ -13,9 +13,11 @@ namespace Coursework_Game
 {
     public partial class Login : Form
     {
+        private Users users;
         public Login()
         {
             InitializeComponent();
+            users = new Users();
         }
 
         private void btnBackButton_Click(object sender, EventArgs e)
@@ -28,22 +30,20 @@ namespace Coursework_Game
         private void btnLogin_click(object sender, EventArgs e)
         {
             string userName = txtUsername.Text;
-            User user;
-            if(!Register.Users.TryGetValue(userName, out user))
-            {
-                MessageBox.Show("User Not Found");
-                return;
-            }
             string password = txtPassword1.Text;
-            byte[] bytes = Encoding.UTF8.GetBytes(password);
-            HashAlgorithm sha = SHA256.Create();
-            byte[] attemptPasswordHash = sha.ComputeHash(bytes);
-            if (!user.PasswordHash.SequenceEqual (attemptPasswordHash))
+            User user;
+            try
             {
-                MessageBox.Show("Incorrect Password");
+                user=users.GetUser(userName, password);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
                 return;
             }
-            MessageBox.Show("Everything is Correct! there is no game.");
+            this.Hide();
+            Game game = new Game(user);
+            game.ShowDialog();
         }
     }
 }

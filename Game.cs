@@ -12,8 +12,10 @@ namespace Coursework_Game
 {
     public partial class Game : Form
     {
-        public Game()
+        private User user;
+        public Game(User user)
         {
+            this.user = user;
             InitializeComponent();
         }
     }
