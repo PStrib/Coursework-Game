@@ -61,7 +61,7 @@ namespace Coursework_Game
             this.btnBackButton.Location = new System.Drawing.Point(40, 40);
             this.btnBackButton.Name = "btnBackButton";
             this.btnBackButton.Size = new System.Drawing.Size(400, 40);
-            this.btnBackButton.TabIndex = 1;
+            this.btnBackButton.TabIndex = 6;
             this.btnBackButton.Text = "Go Back";
             this.btnBackButton.UseVisualStyleBackColor = true;
             this.btnBackButton.Click += new System.EventHandler(this.btnBackButton_Click);
@@ -72,7 +72,7 @@ namespace Coursework_Game
             this.txtUsername.Location = new System.Drawing.Point(93, 131);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(312, 27);
-            this.txtUsername.TabIndex = 2;
+            this.txtUsername.TabIndex = 0;
             // 
             // lblUsername
             // 
@@ -101,7 +101,7 @@ namespace Coursework_Game
             this.txtPassword1.Name = "txtPassword1";
             this.txtPassword1.PasswordChar = '*';
             this.txtPassword1.Size = new System.Drawing.Size(313, 31);
-            this.txtPassword1.TabIndex = 5;
+            this.txtPassword1.TabIndex = 3;
             // 
             // txtPassword2
             // 
@@ -110,7 +110,7 @@ namespace Coursework_Game
             this.txtPassword2.Name = "txtPassword2";
             this.txtPassword2.PasswordChar = '*';
             this.txtPassword2.Size = new System.Drawing.Size(312, 31);
-            this.txtPassword2.TabIndex = 7;
+            this.txtPassword2.TabIndex = 4;
             // 
             // label1
             // 
@@ -138,7 +138,7 @@ namespace Coursework_Game
             this.txtForename.Location = new System.Drawing.Point(93, 200);
             this.txtForename.Name = "txtForename";
             this.txtForename.Size = new System.Drawing.Size(312, 27);
-            this.txtForename.TabIndex = 8;
+            this.txtForename.TabIndex = 1;
             // 
             // label3
             // 
@@ -156,7 +156,7 @@ namespace Coursework_Game
             this.txtSurname.Location = new System.Drawing.Point(92, 271);
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.Size = new System.Drawing.Size(312, 27);
-            this.txtSurname.TabIndex = 10;
+            this.txtSurname.TabIndex = 2;
             // 
             // btnCreateAccount
             // 
@@ -164,8 +164,8 @@ namespace Coursework_Game
             this.btnCreateAccount.Location = new System.Drawing.Point(40, 593);
             this.btnCreateAccount.Name = "btnCreateAccount";
             this.btnCreateAccount.Size = new System.Drawing.Size(400, 40);
-            this.btnCreateAccount.TabIndex = 12;
-            this.btnCreateAccount.Text = "Done";
+            this.btnCreateAccount.TabIndex = 5;
+            this.btnCreateAccount.Text = "Choose Avatar";
             this.btnCreateAccount.UseVisualStyleBackColor = true;
             this.btnCreateAccount.Click += new System.EventHandler(this.btnCreateAccount_Click);
             // 

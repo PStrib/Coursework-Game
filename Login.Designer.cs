@@ -65,7 +65,7 @@ namespace Coursework_Game
             // txtPassword1
             // 
             this.txtPassword1.Font = new System.Drawing.Font("Bauhaus 93", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword1.Location = new System.Drawing.Point(127, 262);
+            this.txtPassword1.Location = new System.Drawing.Point(101, 224);
             this.txtPassword1.Name = "txtPassword1";
             this.txtPassword1.PasswordChar = '*';
             this.txtPassword1.Size = new System.Drawing.Size(313, 31);
@@ -74,27 +74,27 @@ namespace Coursework_Game
             // lblPassword1
             // 
             this.lblPassword1.AutoSize = true;
-            this.lblPassword1.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword1.Location = new System.Drawing.Point(53, 262);
+            this.lblPassword1.Font = new System.Drawing.Font("Bahnschrift Condensed", 16F);
+            this.lblPassword1.Location = new System.Drawing.Point(51, 194);
             this.lblPassword1.Name = "lblPassword1";
-            this.lblPassword1.Size = new System.Drawing.Size(64, 19);
+            this.lblPassword1.Size = new System.Drawing.Size(87, 27);
             this.lblPassword1.TabIndex = 16;
             this.lblPassword1.Text = "Password:";
             // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsername.Font = new System.Drawing.Font("Bahnschrift Condensed", 16F);
             this.lblUsername.Location = new System.Drawing.Point(51, 124);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(66, 19);
+            this.lblUsername.Size = new System.Drawing.Size(90, 27);
             this.lblUsername.TabIndex = 15;
             this.lblUsername.Text = "Username:";
             // 
             // txtUsername
             // 
             this.txtUsername.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsername.Location = new System.Drawing.Point(128, 121);
+            this.txtUsername.Location = new System.Drawing.Point(102, 154);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(312, 27);
             this.txtUsername.TabIndex = 14;

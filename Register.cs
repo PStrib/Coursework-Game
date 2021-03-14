@@ -52,15 +52,12 @@ namespace Coursework_Game
             byte[] bytes = Encoding.UTF8.GetBytes(password);
             HashAlgorithm sha = SHA256.Create();
             byte[] result = sha.ComputeHash(bytes);
-            MessageBox.Show(Encoding.UTF8.GetString(result,0,result.Length));
-
             user.Username = txtUsername.Text;
             user.Forename = txtForename.Text;
             user.Surname = txtSurname.Text;
             user.PasswordHash = result;
             Users.Add(userName, user);
             MessageBox.Show("New User Created!");
-            MessageBox.Show(Convert.ToString(Users.Count));
             this.Hide();
             SplashScreen splashscreen = new SplashScreen();
             splashscreen.ShowDialog();
