@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
-using System.Windows.Forms;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -36,11 +35,20 @@ namespace Coursework_Game
         }
         private void writeUsersToFile()
         {
-            Stream sw = File.Open(fileName, FileMode.Create);
-            var bf = new BinaryFormatter();
-            bf.Serialize(sw, users);
-            sw.Close();
-            sw.Dispose();
+            Stream sw=null;
+            try
+            {
+                sw = File.Open(fileName, FileMode.Create);
+                var bf = new BinaryFormatter();
+                bf.Serialize(sw, users);
+            }
+            finally
+            {
+                if (sw != null)
+                {
+                    sw.Dispose();
+                }    
+            }
         }
 
         public User GetUser(string username, string password)
