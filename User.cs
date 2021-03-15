@@ -1,5 +1,8 @@
-﻿namespace Coursework_Game
+﻿using System;
+
+namespace Coursework_Game
 {
+    [Serializable]
     public class User
     {
         private string username, forename, surname;

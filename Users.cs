@@ -3,19 +3,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
+using System.Windows.Forms;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Coursework_Game
 {
+
     public class Users
     {
-
+        private const string fileName = "UserDetails.bin";
         private static Dictionary<string, User> users;
         public Users()
         {
             if (users == null)
             {
                 users = new Dictionary<string, User>();
+                readUsersFromFile();
             }
+        }
+        private void readUsersFromFile()
+        {
+            Stream sr;
+            try
+            {
+                sr = File.OpenRead(fileName);
+            }
+            catch (FileNotFoundException) { return;}
+            var bf = new BinaryFormatter();
+            users=(Dictionary<string, User>)bf.Deserialize(sr);
+
+        }
+        private void writeUsersToFile()
+        {
+            Stream sw = File.Open(fileName, FileMode.Create);
+            var bf = new BinaryFormatter();
+            bf.Serialize(sw, users);
+            sw.Close();
+            sw.Dispose();
         }
 
         public User GetUser(string username, string password)
@@ -56,6 +81,7 @@ namespace Coursework_Game
                 throw new Exception("Username already in use");
             }
             users.Add(user.Username, user);
+            writeUsersToFile();
         }
     }
 }
