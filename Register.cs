@@ -4,6 +4,7 @@ using System.Data;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace Coursework_Game
 {
@@ -29,14 +30,12 @@ namespace Coursework_Game
 
         private void btnCreateAccount_Click(object sender, EventArgs e)
         {
-            if (txtPassword1.Text != txtPassword2.Text)
+            string password = txtPassword1.Text;
+            if (password != txtPassword2.Text)
             {
                 MessageBox.Show("Passwords Do Not Match!");
                 return;
             }
-
-            string userName = txtUsername.Text;
-
             User user = new User();
 
             if (txtUsername.TextLength < 4)
@@ -45,31 +44,27 @@ namespace Coursework_Game
                 return;
             }
 
-            if (txtForename == null || txtSurname == null)
+            if (txtForename.TextLength==0 || txtSurname.TextLength==0)
             {
                 MessageBox.Show("Please give us your name and surname for no good reason.");
                 return;
             }
-
-            bool punctuation = false;
-            foreach (char c in txtPassword1.Text)
+            bool hasPunctuation = password.Any(char.IsPunctuation);
+            if (txtPassword1.TextLength < 6)
             {
-                if(Char.IsPunctuation(c))
-                {
-                    punctuation = true;
-                    break;
-                }
+                MessageBox.Show("Invalid Password:\n\nPassword must be at least 5 characters");
+                return;
             }
-            if (txtPassword1.TextLength < 6||punctuation==false)
+
+            if (!hasPunctuation)
             {
-                MessageBox.Show("Invalid Password:\n\nPassword must be at least 5 characters and contain a punctuation mark");
+                MessageBox.Show("Password must have a punctuation");
                 return;
             }
 
             user.Username = txtUsername.Text;
             user.Forename = txtForename.Text;
             user.Surname = txtSurname.Text;
-            string password = txtPassword1.Text;
             try
             {
                 users.AddUser(user, password);
@@ -79,8 +74,6 @@ namespace Coursework_Game
                 MessageBox.Show("That username is taken, please try another one.");
                 return;
             }
-
-
             MessageBox.Show("New User Created!");
             this.Hide();
             SplashScreen splashscreen = new SplashScreen();
