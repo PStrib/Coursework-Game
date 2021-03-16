@@ -52,9 +52,9 @@ namespace Coursework_Game
             }
 
             bool punctuation = false;
-            foreach (int i in txtPassword1.Text)//-----------------------------------------------
+            foreach (char c in txtPassword1.Text)
             {
-                if(Char.IsPunctuation(txtPassword1.Text, i))
+                if(Char.IsPunctuation(c))
                 {
                     punctuation = true;
                     break;
@@ -70,7 +70,16 @@ namespace Coursework_Game
             user.Forename = txtForename.Text;
             user.Surname = txtSurname.Text;
             string password = txtPassword1.Text;
-            users.AddUser(user, password);
+            try
+            {
+                users.AddUser(user, password);
+            }
+            catch
+            {
+                MessageBox.Show("That username is taken, please try another one.");
+                return;
+            }
+
 
             MessageBox.Show("New User Created!");
             this.Hide();
