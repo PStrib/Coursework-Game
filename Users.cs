@@ -46,7 +46,8 @@ namespace Coursework_Game
             {
                 if (sw != null)
                 {
-                    sw.Dispose();
+                     //will always close the file, even if the forerunning code breaks.
+                     sw.Dispose();
                 }    
             }
         }

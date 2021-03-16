@@ -39,7 +39,33 @@ namespace Coursework_Game
 
             User user = new User();
 
-      
+            if (txtUsername.TextLength < 4)
+            {
+                MessageBox.Show("Invalid Username:\n\nUsername must be at least 3 characters long");
+                return;
+            }
+
+            if (txtForename == null || txtSurname == null)
+            {
+                MessageBox.Show("Please give us your name and surname for no good reason.");
+                return;
+            }
+
+            bool punctuation = false;
+            foreach (int i in txtPassword1.Text)//-----------------------------------------------
+            {
+                if(Char.IsPunctuation(txtPassword1.Text, i))
+                {
+                    punctuation = true;
+                    break;
+                }
+            }
+            if (txtPassword1.TextLength < 6||punctuation==false)
+            {
+                MessageBox.Show("Invalid Password:\n\nPassword must be at least 5 characters and contain a punctuation mark");
+                return;
+            }
+
             user.Username = txtUsername.Text;
             user.Forename = txtForename.Text;
             user.Surname = txtSurname.Text;
