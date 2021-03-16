@@ -43,13 +43,16 @@ namespace Coursework_Game
             this.label3 = new System.Windows.Forms.Label();
             this.txtSurname = new System.Windows.Forms.TextBox();
             this.btnCreateAccount = new System.Windows.Forms.Button();
+            this.btnNextIcon = new System.Windows.Forms.Button();
+            this.btnPreviousIcon = new System.Windows.Forms.Button();
+            this.lblAvatar = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.SplashBackground2)).BeginInit();
             this.SuspendLayout();
             // 
             // SplashBackground2
             // 
             this.SplashBackground2.BackgroundImage = global::Coursework_Game.Properties.Resources.BookCase;
-            this.SplashBackground2.Location = new System.Drawing.Point(-6, -4);
+            this.SplashBackground2.Location = new System.Drawing.Point(-11, -5);
             this.SplashBackground2.Name = "SplashBackground2";
             this.SplashBackground2.Size = new System.Drawing.Size(494, 671);
             this.SplashBackground2.TabIndex = 0;
@@ -165,15 +168,48 @@ namespace Coursework_Game
             this.btnCreateAccount.Name = "btnCreateAccount";
             this.btnCreateAccount.Size = new System.Drawing.Size(400, 40);
             this.btnCreateAccount.TabIndex = 5;
-            this.btnCreateAccount.Text = "Choose Avatar";
+            this.btnCreateAccount.Text = "Register";
             this.btnCreateAccount.UseVisualStyleBackColor = true;
             this.btnCreateAccount.Click += new System.EventHandler(this.btnCreateAccount_Click);
+            // 
+            // btnNextIcon
+            // 
+            this.btnNextIcon.Location = new System.Drawing.Point(301, 512);
+            this.btnNextIcon.Name = "btnNextIcon";
+            this.btnNextIcon.Size = new System.Drawing.Size(103, 30);
+            this.btnNextIcon.TabIndex = 13;
+            this.btnNextIcon.Text = "Next";
+            this.btnNextIcon.UseVisualStyleBackColor = true;
+            this.btnNextIcon.Click += new System.EventHandler(this.btnNextAvatar_Click);
+            // 
+            // btnPreviousIcon
+            // 
+            this.btnPreviousIcon.Location = new System.Drawing.Point(51, 512);
+            this.btnPreviousIcon.Name = "btnPreviousIcon";
+            this.btnPreviousIcon.Size = new System.Drawing.Size(83, 30);
+            this.btnPreviousIcon.TabIndex = 14;
+            this.btnPreviousIcon.Text = "Previous";
+            this.btnPreviousIcon.UseVisualStyleBackColor = true;
+            this.btnPreviousIcon.Click += new System.EventHandler(this.btnPreviousAvatar_Click);
+            // 
+            // lblAvatar
+            // 
+            this.lblAvatar.AutoSize = true;
+            this.lblAvatar.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAvatar.Location = new System.Drawing.Point(200, 497);
+            this.lblAvatar.Name = "lblAvatar";
+            this.lblAvatar.Size = new System.Drawing.Size(34, 55);
+            this.lblAvatar.TabIndex = 15;
+            this.lblAvatar.Text = "l";
             // 
             // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 661);
+            this.Controls.Add(this.lblAvatar);
+            this.Controls.Add(this.btnPreviousIcon);
+            this.Controls.Add(this.btnNextIcon);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblPassword1);
             this.Controls.Add(this.btnCreateAccount);
@@ -212,5 +248,8 @@ namespace Coursework_Game
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtSurname;
         private System.Windows.Forms.Button btnCreateAccount;
+        private System.Windows.Forms.Button btnNextIcon;
+        private System.Windows.Forms.Button btnPreviousIcon;
+        private System.Windows.Forms.Label lblAvatar;
     }
 }

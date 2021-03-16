@@ -12,14 +12,21 @@ namespace Coursework_Game
     public partial class Register : Form
     {
         private Users users;
+        private int avatar;
+        private const int NUM_AVATARS = 5;
 
         public Register()
         {
             InitializeComponent();
             users = new Users();
+            avatar = 1;
+            setAvatar();
         }
 
-
+        private void setAvatar()
+        {
+            lblAvatar.Text = Convert.ToString(avatar);
+        }
 
         private void btnBackButton_Click(object sender, EventArgs e)
         {
@@ -78,6 +85,33 @@ namespace Coursework_Game
             this.Hide();
             SplashScreen splashscreen = new SplashScreen();
             splashscreen.ShowDialog();
+        }
+
+        private void btnPreviousAvatar_Click(object sender, EventArgs e)
+        {
+            if (avatar == 1)
+            {
+                avatar = 5;
+            }
+            else
+            {
+                avatar -= 1;
+            }
+            setAvatar();
+        }
+
+        private void btnNextAvatar_Click(object sender, EventArgs e)
+        {
+            if (avatar == 5)
+            {
+                avatar = 1;
+            }
+            else
+            {
+                avatar += 1;
+            }
+
+            setAvatar();
         }
     }
 }
