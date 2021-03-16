@@ -63,16 +63,6 @@ namespace Coursework_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _2021_03_08_21_53_00 {
-            get {
-                object obj = ResourceManager.GetObject("2021-03-08_21.53.00", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap BookCase {
             get {
                 object obj = ResourceManager.GetObject("BookCase", resourceCulture);
@@ -86,6 +76,56 @@ namespace Coursework_Game.Properties {
         internal static System.Drawing.Bitmap Button {
             get {
                 object obj = ResourceManager.GetObject("Button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Thumbnail1 {
+            get {
+                object obj = ResourceManager.GetObject("Thumbnail1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Thumbnail2 {
+            get {
+                object obj = ResourceManager.GetObject("Thumbnail2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Thumbnail3 {
+            get {
+                object obj = ResourceManager.GetObject("Thumbnail3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Thumbnail4 {
+            get {
+                object obj = ResourceManager.GetObject("Thumbnail4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Thumbnail5 {
+            get {
+                object obj = ResourceManager.GetObject("Thumbnail5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -124,5 +124,23 @@
   <ItemGroup>
     <None Include="Resources\Button.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Thumbnail1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Thumbnail2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Thumbnail3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Thumbnail4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Thumbnail5.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
