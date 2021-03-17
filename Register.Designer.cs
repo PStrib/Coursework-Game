@@ -57,7 +57,7 @@ namespace Coursework_Game
             this.btnBackButton.Location = new System.Drawing.Point(40, 12);
             this.btnBackButton.Name = "btnBackButton";
             this.btnBackButton.Size = new System.Drawing.Size(400, 40);
-            this.btnBackButton.TabIndex = 6;
+            this.btnBackButton.TabIndex = 8;
             this.btnBackButton.Text = "Go Back";
             this.btnBackButton.UseVisualStyleBackColor = true;
             this.btnBackButton.Click += new System.EventHandler(this.btnBackButton_Click);
@@ -160,7 +160,7 @@ namespace Coursework_Game
             this.btnCreateAccount.Location = new System.Drawing.Point(40, 593);
             this.btnCreateAccount.Name = "btnCreateAccount";
             this.btnCreateAccount.Size = new System.Drawing.Size(400, 40);
-            this.btnCreateAccount.TabIndex = 5;
+            this.btnCreateAccount.TabIndex = 7;
             this.btnCreateAccount.Text = "Register";
             this.btnCreateAccount.UseVisualStyleBackColor = true;
             this.btnCreateAccount.Click += new System.EventHandler(this.btnCreateAccount_Click);
@@ -171,10 +171,11 @@ namespace Coursework_Game
             this.btnNextAvatar.Location = new System.Drawing.Point(328, 512);
             this.btnNextAvatar.Name = "btnNextAvatar";
             this.btnNextAvatar.Size = new System.Drawing.Size(103, 40);
-            this.btnNextAvatar.TabIndex = 13;
+            this.btnNextAvatar.TabIndex = 5;
+            this.btnNextAvatar.Tag = "1";
             this.btnNextAvatar.Text = "Next";
             this.btnNextAvatar.UseVisualStyleBackColor = true;
-            this.btnNextAvatar.Click += new System.EventHandler(this.btnNextAvatar_Click);
+            this.btnNextAvatar.Click += new System.EventHandler(this.btnChangeAvatar_Click);
             // 
             // btnPreviousIcon
             // 
@@ -182,10 +183,11 @@ namespace Coursework_Game
             this.btnPreviousIcon.Location = new System.Drawing.Point(40, 512);
             this.btnPreviousIcon.Name = "btnPreviousIcon";
             this.btnPreviousIcon.Size = new System.Drawing.Size(92, 40);
-            this.btnPreviousIcon.TabIndex = 14;
+            this.btnPreviousIcon.TabIndex = 6;
+            this.btnPreviousIcon.Tag = "-1";
             this.btnPreviousIcon.Text = "Previous";
             this.btnPreviousIcon.UseVisualStyleBackColor = true;
-            this.btnPreviousIcon.Click += new System.EventHandler(this.btnPreviousAvatar_Click);
+            this.btnPreviousIcon.Click += new System.EventHandler(this.btnChangeAvatar_Click);
             // 
             // SplashBackground2
             // 

@@ -21,7 +21,7 @@ namespace Coursework_Game
             InitializeComponent();
             users = new Users();
             populateAvatars();
-            avatar = 1;
+            avatar = 0;
             setAvatar();
         }
         private void populateAvatars()
@@ -36,8 +36,7 @@ namespace Coursework_Game
 
         private void setAvatar()
         {
-            // lblAvatar.Text = Convert.ToString(avatar);
-            pBoxAvatar.Image = avatars[avatar-1];
+            pBoxAvatar.Image = avatars[avatar];
         }
 
         private void btnBackButton_Click(object sender, EventArgs e)
@@ -84,7 +83,7 @@ namespace Coursework_Game
             user.Username = txtUsername.Text;
             user.Forename = txtForename.Text;
             user.Surname = txtSurname.Text;
-            user.Avatar = avatars[avatar-1];
+            user.Avatar = avatars[avatar];
             try
             {
                 users.AddUser(user, password);
@@ -100,29 +99,22 @@ namespace Coursework_Game
             splashscreen.ShowDialog();
         }
 
-        private void btnPreviousAvatar_Click(object sender, EventArgs e)
+        private void btnChangeAvatar_Click(object sender, EventArgs e)
         {
-            if (avatar == 1)
-            {
-                avatar = 5;
-            }
-            else
-            {
-                avatar -= 1;
-            }
-            setAvatar();
-        }
-
-        private void btnNextAvatar_Click(object sender, EventArgs e)
-        {
+            var button = sender as Button;
+            var tagstr=button.Tag as string;
+            int direction = Convert.ToInt32(tagstr);
+            avatar += direction;
             if (avatar == 5)
             {
-                avatar = 1;
+                avatar = 0;
             }
-            else
+            if (avatar == -1)
             {
-                avatar += 1;
+                avatar = 4;
             }
+
+
             setAvatar();
         }
     }
