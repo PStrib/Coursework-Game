@@ -14,18 +14,30 @@ namespace Coursework_Game
         private Users users;
         private int avatar;
         private const int NUM_AVATARS = 5;
+        private Image[] avatars;
 
         public Register()
         {
             InitializeComponent();
             users = new Users();
+            populateAvatars();
             avatar = 1;
             setAvatar();
+        }
+        private void populateAvatars()
+        {
+            avatars = new Image[5];
+            avatars[0] = Properties.Resources.Thumbnail1;
+            avatars[1] = Properties.Resources.Thumbnail2;
+            avatars[2] = Properties.Resources.Thumbnail3;
+            avatars[3] = Properties.Resources.Thumbnail4;
+            avatars[4] = Properties.Resources.Thumbnail5;
         }
 
         private void setAvatar()
         {
-            lblAvatar.Text = Convert.ToString(avatar);
+            // lblAvatar.Text = Convert.ToString(avatar);
+            pBoxAvatar.Image = avatars[avatar-1];
         }
 
         private void btnBackButton_Click(object sender, EventArgs e)
@@ -72,6 +84,7 @@ namespace Coursework_Game
             user.Username = txtUsername.Text;
             user.Forename = txtForename.Text;
             user.Surname = txtSurname.Text;
+            user.Avatar = avatars[avatar-1];
             try
             {
                 users.AddUser(user, password);
@@ -110,7 +123,6 @@ namespace Coursework_Game
             {
                 avatar += 1;
             }
-
             setAvatar();
         }
     }

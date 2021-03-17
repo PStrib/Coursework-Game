@@ -17,6 +17,7 @@ namespace Coursework_Game
         {
             this.user = user;
             InitializeComponent();
+            pboxAvatar.Image = user.Avatar;
         }
     }
 }

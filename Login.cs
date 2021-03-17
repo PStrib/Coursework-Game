@@ -42,6 +42,7 @@ namespace Coursework_Game
                 return;
             }
             this.Hide();
+            MessageBox.Show("You are logged in successfully!");
             Game game = new Game(user);
             game.ShowDialog();
         }

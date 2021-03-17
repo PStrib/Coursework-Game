@@ -83,6 +83,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Game.resx">
+      <DependentUpon>Game.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HighScores.resx">
       <DependentUpon>HighScores.cs</DependentUpon>
     </EmbeddedResource>
@@ -137,10 +140,10 @@
     <None Include="Resources\Thumbnail3.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Thumbnail4.jpg" />
+    <None Include="Resources\Thumbnail5.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Thumbnail5.png" />
+    <None Include="Resources\Thumbnail4.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
