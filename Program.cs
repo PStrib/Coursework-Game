@@ -16,7 +16,8 @@ namespace Coursework_Game
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SplashScreen());
+            User p = new User();
+            Application.Run(new Game(p));
         }
     }
 }
