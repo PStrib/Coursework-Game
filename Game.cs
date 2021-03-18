@@ -11,14 +11,24 @@ using System.Windows.Forms;
 
 namespace Coursework_Game
 {
-    using Tag = Tuple<int, int>;
     public partial class Game : Form
     {
+        private class Square 
+        {
+            public int x, y;
+            public bool hasMine = false;
+            public int adjacencies;
+            public override string ToString()
+            {
+                return $"{x}, {y}, {hasMine}";
+            }
+        }
 
         private User user;
         private const int X_ELEMENTS= 10;
         private const int Y_ELEMENTS = 10;
-        private int[,] gameboard = new int [X_ELEMENTS+2, Y_ELEMENTS+2];
+        private const int MINES = 10;
+        private bool[,] gameboard = new bool[X_ELEMENTS+2, Y_ELEMENTS+2];
         private List<int[]>mines = new List<int[]>();
         Random random = new Random();
 
@@ -28,76 +38,89 @@ namespace Coursework_Game
             this.user = user;
             InitializeComponent();
             pboxAvatar.Image = user.Avatar;
-            Button[,] squares = new Button[10, 10];
+            generateBoard();
+            placeMines();
+            //foreach (int[] i in mines)
+            //{
+            //    for (int x = 0; x < X_ELEMENTS; x++)
+            //    {
+            //        for (int j = 0; j < Y_ELEMENTS; j++)
+            //        {
+            //            if (x == i[0] && j == i[1])
+            //            {
+            //                squares[x, j].BackColor = Color.Red;
+            //                squares[x, j].Tag = "Mine";
+            //            }
+            //        }
+            //    }
+            //}
+        }
+
+        private void placeMines()
+        {
             for (int i = 0; i < 10; i++)
             {
-                for (int j = 0; j < 10; j++)
+                int row = random.Next(Y_ELEMENTS);
+                int column = random.Next(X_ELEMENTS);
+                int[] chosenValues = new int[2] { row, column };
+                while (mines.Contains(chosenValues))
                 {
-                    Tag tagArray = new Tag ( i, j );
+                    row = random.Next(Y_ELEMENTS);
+                    column = random.Next(X_ELEMENTS);
+                    chosenValues = new int[2] { row, column };
+                }
+                mines.Add(new int[] { row, column });
+            }
+        }
+
+        private void generateBoard()
+        {
+            Button[,] squares = new Button[X_ELEMENTS, Y_ELEMENTS];
+            for (int i = 0; i < X_ELEMENTS; i++)
+            {
+                for (int j = 0; j < Y_ELEMENTS; j++)
+                {
+                    Square square = new Square { x = i, y = j };
                     Point point = new Point(i * 51 + 710, j * 51 + 250);
                     Button button = new Button
                     {
                         Height = 50,
                         Width = 50,
                         Location = point,
+                        Tag = square,
                     };
-                    button.Click+=btnGameButton_Click;
+                    button.Click += btnGameButton_Click;
                     this.Controls.Add(button);
                     squares[i, j] = button;
                 }
             }
-
-            for (int i = 0; i < 10; i++)
-            { 
-                int row = random.Next(10);
-                int column = random.Next(10);
-                int[] chosenValues = new int[2] { row, column };
-                while (mines.Contains(chosenValues))
-                {
-                    row = random.Next(10);
-                    column = random.Next(10);
-                    chosenValues = new int[2] { row, column };
-                }
-                mines.Add(new int[] { row, column }); 
-            }
-            foreach(int[] i in mines)
-            {
-                for(int x = 0; x < X_ELEMENTS; x++)
-                {
-                    for(int j = 0; j < Y_ELEMENTS; j++)
-                    {
-                        if (x == i[0] && j == i[1])
-                        {
-                            squares[x,j].BackColor = Color.Red;
-                            squares[x, j].Tag = "Mine";
-                        }
-                    }
-                }
-            }
         }
-        private int howManyMimes()
+
+        //private int howManyMimes()
+        //{
+        //    int noOfMines = 0;
+        //    for (int column = 0; column < X_ELEMENTS; column++)
+        //    {
+        //        for (int row = 0; row < Y_ELEMENTS; row++)
+        //        {
+        //            noOfMines = adjacentMines(noOfMines, column, row);
+        //        }
+        //    }
+        //    return noOfMines;
+        //}
+
+        private int adjacentMines(int noOfMines, int column, int row)
         {
-            for (int column = 0; column < X_ELEMENTS; column++)
-            {
-                for (int row = 0; row < Y_ELEMENTS; row++)
-                {
-                    int[] leftOfCoordinates = new int[2] { row, column - 1 };
-                    int[] rightOfCoordinates = new int[2] { row, column + 1 };
-                    int[] aboveCoordinates = new int[2] { row + 1, column };
-                    int[] belowCoordinates = new int[2] { row - 1, column };
+             adjacentSquares=new Square { }
 
-                    int[] UpRightOfCoordinates = new int[2] { row + 1, column + 1 };
-                    int[] downRightOfCoordinates = new int[2] { row - 1, column + 1 };
-                    int[] upLeftOfCoordinates = new int[2] { row + 1, column - 1 };
-                    int[] DownLeftOfCoordinates = new int[2] { row - 1, column - 1 };
-                }
-            }
+            return noOfMines;
         }
 
-        private void btnGameButton_Click(object sender, EventArgs e)
+    private void btnGameButton_Click(object sender, EventArgs e)
         {
             var button = sender as Button;
-            var tagArray = button.Tag as Tag;
+            var square = button.Tag as Square;
+            MessageBox.Show(Convert.ToString(square));
         }
     }
 }
