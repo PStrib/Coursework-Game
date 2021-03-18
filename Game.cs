@@ -39,7 +39,6 @@ namespace Coursework_Game
                     {
                         Height = 50,
                         Width = 50,
-                        Tag = tagArray,
                         Location = point,
                     };
                     button.Click+=btnGameButton_Click;
@@ -53,7 +52,8 @@ namespace Coursework_Game
                 int row = random.Next(10);
                 int column = random.Next(10);
                 int[] chosenValues = new int[2] { row, column };
-                while (mines.Contains(chosenValues)){
+                while (mines.Contains(chosenValues))
+                {
                     row = random.Next(10);
                     column = random.Next(10);
                     chosenValues = new int[2] { row, column };
@@ -73,19 +73,31 @@ namespace Coursework_Game
                         }
                     }
                 }
+            }
+        }
+        private int howManyMimes()
+        {
+            for (int column = 0; column < X_ELEMENTS; column++)
+            {
+                for (int row = 0; row < Y_ELEMENTS; row++)
                 {
+                    int[] leftOfCoordinates = new int[2] { row, column - 1 };
+                    int[] rightOfCoordinates = new int[2] { row, column + 1 };
+                    int[] aboveCoordinates = new int[2] { row + 1, column };
+                    int[] belowCoordinates = new int[2] { row - 1, column };
 
+                    int[] UpRightOfCoordinates = new int[2] { row + 1, column + 1 };
+                    int[] downRightOfCoordinates = new int[2] { row - 1, column + 1 };
+                    int[] upLeftOfCoordinates = new int[2] { row + 1, column - 1 };
+                    int[] DownLeftOfCoordinates = new int[2] { row - 1, column - 1 };
                 }
             }
-
-            
-
         }
+
         private void btnGameButton_Click(object sender, EventArgs e)
         {
             var button = sender as Button;
             var tagArray = button.Tag as Tag;
-            MessageBox.Show($"{tagArray.Item1},{tagArray.Item2}");
         }
     }
 }
