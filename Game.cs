@@ -113,6 +113,7 @@ namespace Coursework_Game
             {
                 squares[x, y].hasMine = true;
                 buttons[x, y].BackColor = Color.Red;
+                buttons[x,y].Text="💣";
             }
             else
             {
