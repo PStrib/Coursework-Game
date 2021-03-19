@@ -13,14 +13,22 @@ namespace Coursework_Game
 {
     public partial class Game : Form
     {
+
         private class Square 
         {
             public int x, y;
             public bool hasMine = false;
             public int adjacencies;
+
+            public Square(int x, int y)
+            {
+                this.x = x;
+                this.y = y;
+            }
+
             public override string ToString()
             {
-                return $"{x}, {y}, {hasMine}";
+                return $"{x}, {y}, hasmine={hasMine}, adjacencies={adjacencies}";
             }
         }
 
@@ -28,8 +36,9 @@ namespace Coursework_Game
         private const int X_ELEMENTS= 10;
         private const int Y_ELEMENTS = 10;
         private const int MINES = 10;
-        private bool[,] gameboard = new bool[X_ELEMENTS+2, Y_ELEMENTS+2];
-        private List<int[]>mines = new List<int[]>();
+        private Button[,] buttons = new Button[X_ELEMENTS, Y_ELEMENTS];
+        private bool[,] gameBoard = new bool[X_ELEMENTS+2, Y_ELEMENTS+2];
+        private Square[,] squares = new Square[X_ELEMENTS,Y_ELEMENTS];
         Random random = new Random();
 
 
@@ -40,48 +49,46 @@ namespace Coursework_Game
             pboxAvatar.Image = user.Avatar;
             generateBoard();
             placeMines();
-            //foreach (int[] i in mines)
-            //{
-            //    for (int x = 0; x < X_ELEMENTS; x++)
-            //    {
-            //        for (int j = 0; j < Y_ELEMENTS; j++)
-            //        {
-            //            if (x == i[0] && j == i[1])
-            //            {
-            //                squares[x, j].BackColor = Color.Red;
-            //                squares[x, j].Tag = "Mine";
-            //            }
-            //        }
-            //    }
-            //}
+            updateSquares();
+        }
+
+        private void updateSquares()
+        {
+            for (int x = 0; x < X_ELEMENTS; x++)
+            {
+                for (int y = 0; y < Y_ELEMENTS; y++)
+                {
+                    updateSquare(x, y);
+                }
+            }
         }
 
         private void placeMines()
         {
             for (int i = 0; i < 10; i++)
             {
-                int row = random.Next(Y_ELEMENTS);
-                int column = random.Next(X_ELEMENTS);
-                int[] chosenValues = new int[2] { row, column };
-                while (mines.Contains(chosenValues))
+                int x;
+                int y;
+                do
                 {
-                    row = random.Next(Y_ELEMENTS);
-                    column = random.Next(X_ELEMENTS);
-                    chosenValues = new int[2] { row, column };
+                    x = random.Next(Y_ELEMENTS);
+                    y = random.Next(X_ELEMENTS);
                 }
-                mines.Add(new int[] { row, column });
+                while ((gameBoard[x+1, y+1] == true)) ;
+                gameBoard[x+1, y+1] = true;
             }
         }
 
         private void generateBoard()
         {
-            Button[,] squares = new Button[X_ELEMENTS, Y_ELEMENTS];
-            for (int i = 0; i < X_ELEMENTS; i++)
+
+            for (int x = 0; x < X_ELEMENTS; x++)
             {
-                for (int j = 0; j < Y_ELEMENTS; j++)
+                for (int y = 0; y < Y_ELEMENTS; y++)
                 {
-                    Square square = new Square { x = i, y = j };
-                    Point point = new Point(i * 51 + 710, j * 51 + 250);
+                    Square square = new Square(x,y);
+                    squares[x,y]=square;
+                    Point point = new Point(x * 51 + 710, y * 51 + 250);
                     Button button = new Button
                     {
                         Height = 50,
@@ -91,39 +98,42 @@ namespace Coursework_Game
                     };
                     button.Click += btnGameButton_Click;
                     this.Controls.Add(button);
-                    squares[i, j] = button;
+                    buttons[x, y] = button;
                 }
             }
         }
 
-        private int adjacentMines(int noOfMines, int column, int row)
+        private void updateSquare(int x, int y)
         {
-            int x = column;
-            int y = row;
-            var offsets = new[] { -1, 0, 0 };
-            int[] chosenValues = new int[2] { x, y };
-            foreach (int xOffset in offsets)
+            int noOfMines=0;
+            var offsets = new[] { -1, 0, 1 };
+            if (gameBoard[x + 1, y + 1])//if the coordinates being checked are a mine
             {
-                foreach (int yOffset in offsets)
+                squares[x, y].hasMine = true;
+                buttons[x, y].BackColor = Color.Red;
+            }
+            else
+            {
+                foreach (int xOffset in offsets)
                 {
-                    if (!mines.Contains(chosenValues))//if the coordinates being checked are not a mine
+                    foreach (int yOffset in offsets)
                     {
-                        chosenValues = new int[2] { x+xOffset, y+yOffset };
-                        if (mines.Contains(chosenValues))
+
+                        if (gameBoard[x + xOffset + 1, y + yOffset + 1])
                         {
                             noOfMines += 1;
                         }
                     }
                 }
+                squares[x, y].adjacencies = noOfMines;
+                buttons[x, y].Text = Convert.ToString(noOfMines);
             }
-            return noOfMines;
         }
 
     private void btnGameButton_Click(object sender, EventArgs e)
         {
             var button = sender as Button;
             var square = button.Tag as Square;
-            MessageBox.Show(Convert.ToString(square));
         }
     }
 }
