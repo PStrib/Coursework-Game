@@ -96,23 +96,26 @@ namespace Coursework_Game
             }
         }
 
-        //private int howManyMimes()
-        //{
-        //    int noOfMines = 0;
-        //    for (int column = 0; column < X_ELEMENTS; column++)
-        //    {
-        //        for (int row = 0; row < Y_ELEMENTS; row++)
-        //        {
-        //            noOfMines = adjacentMines(noOfMines, column, row);
-        //        }
-        //    }
-        //    return noOfMines;
-        //}
-
         private int adjacentMines(int noOfMines, int column, int row)
         {
-             adjacentSquares=new Square { }
-
+            int x = column;
+            int y = row;
+            var offsets = new[] { -1, 0, 0 };
+            int[] chosenValues = new int[2] { x, y };
+            foreach (int xOffset in offsets)
+            {
+                foreach (int yOffset in offsets)
+                {
+                    if (!mines.Contains(chosenValues))//if the coordinates being checked are not a mine
+                    {
+                        chosenValues = new int[2] { x+xOffset, y+yOffset };
+                        if (mines.Contains(chosenValues))
+                        {
+                            noOfMines += 1;
+                        }
+                    }
+                }
+            }
             return noOfMines;
         }
 
