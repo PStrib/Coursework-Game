@@ -37,6 +37,7 @@ namespace Coursework_Game
         private const int Y_ELEMENTS = 10;
         private const int MINES = 10;
         private Button[,] buttons = new Button[X_ELEMENTS, Y_ELEMENTS];
+        // gameBoard is 2 bigger in x and y so as to simplify the adjacencies algorithm
         private bool[,] gameBoard = new bool[X_ELEMENTS+2, Y_ELEMENTS+2];
         private Square[,] squares = new Square[X_ELEMENTS,Y_ELEMENTS];
         Random random = new Random();
@@ -65,7 +66,8 @@ namespace Coursework_Game
 
         private void placeMines()
         {
-            for (int i = 0; i < 10; i++)
+            // For next time try shuffling
+            for (int i = 0; i < MINES; i++)
             {
                 int x;
                 int y;
