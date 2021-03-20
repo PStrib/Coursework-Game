@@ -109,8 +109,9 @@ namespace Coursework_Game
             var offsets = new[] { -1, 0, 1 };
             if (gameBoard[x + 1, y + 1])//if the coordinates being checked are a mine
             {
-                squares[x, y].hasMine = true;
-                squares[x, y].adjacencies = 9;
+                Square square = squares[x, y];
+                square.hasMine = true;
+                square.adjacencies = 9;
                 
             }
             else
@@ -145,8 +146,6 @@ namespace Coursework_Game
             floodFill(x, y - 2); // flood fill north
             floodFill(x + 2, y); // flood fill east
             floodFill(x - 2, y); // flood fill west
-
-
         }
 
         private void reveal3x3(Square square)
@@ -164,19 +163,20 @@ namespace Coursework_Game
                     revealSquare(x, y);
                 }
             }
-
         }
 
         private void revealSquare(int x, int y)
         {
-            if (squares[x, y].hasMine)
+            Button button = buttons[x, y];
+            Square square = squares[x, y];
+            if (square.hasMine)
             {
-                buttons[x, y].BackColor = Color.Red;
-                buttons[x, y].Text = "💣";
+                button.BackColor = Color.Red;
+                button.Text = "💣";
             }
             else
             {
-                buttons[x, y].Text = Convert.ToString(squares[x, y].adjacencies);
+                button.Text = Convert.ToString(square.adjacencies);
             }             
         }
 
@@ -192,14 +192,16 @@ namespace Coursework_Game
             var square = button.Tag as Square;
             if (square.adjacencies != 0)
             {
-                button.Text = Convert.ToString(square.adjacencies);
+                revealSquare(square.x, square.y);
             }
             else if (square.hasMine)
             {
                 gameOver();
             }
             else
+            {
                 floodFill(square.x, square.y);
+            }             
         }
     }
 }
