@@ -110,8 +110,8 @@ namespace Coursework_Game
             if (gameBoard[x + 1, y + 1])//if the coordinates being checked are a mine
             {
                 squares[x, y].hasMine = true;
-                buttons[x, y].BackColor = Color.Red;
-                buttons[x,y].Text="💣";
+                squares[x, y].adjacencies = 9;
+                
             }
             else
             {
@@ -127,14 +127,79 @@ namespace Coursework_Game
                     }
                 }
                 squares[x, y].adjacencies = noOfMines;
-                buttons[x, y].Text = Convert.ToString(noOfMines);
+                //buttons[x, y].Text = Convert.ToString(noOfMines);
             }
         }
+        private void floodFill(int x, int y)
+        {
+            if (x < 0 || y < 0 || x >= X_ELEMENTS || y >= Y_ELEMENTS)
+                return;
+            Button button = buttons[x, y];
+            if (button.Text == "0")
+                return;
+            var square = squares[x, y];
+            if (square.adjacencies != 0)
+                return;
+            reveal3x3(square);
+            floodFill(x, y + 2); // flood fill south
+            floodFill(x, y - 2); // flood fill north
+            floodFill(x + 2, y); // flood fill east
+            floodFill(x - 2, y); // flood fill west
 
-    private void btnGameButton_Click(object sender, EventArgs e)
+
+        }
+
+        private void reveal3x3(Square square)
+        {
+ 
+            var offsets = new[] { -1, 0, 1 };
+            foreach (int xOffset in offsets)
+            {
+                foreach (int yOffset in offsets)
+                {
+                    int x = square.x + xOffset;
+                    int y = square.y + yOffset;
+                    if (x < 0 || y < 0 || x >= X_ELEMENTS || y >= Y_ELEMENTS)
+                        continue;
+                    revealSquare(x, y);
+                }
+            }
+
+        }
+
+        private void revealSquare(int x, int y)
+        {
+            if (squares[x, y].hasMine)
+            {
+                buttons[x, y].BackColor = Color.Red;
+                buttons[x, y].Text = "💣";
+            }
+            else
+            {
+                buttons[x, y].Text = Convert.ToString(squares[x, y].adjacencies);
+            }             
+        }
+
+        private void gameOver()
+        {
+            // TODO: nested for loops and reveal bombs
+            MessageBox.Show("Game Over!"); // Placeholder
+        }
+
+        private void btnGameButton_Click(object sender, EventArgs e)
         {
             var button = sender as Button;
             var square = button.Tag as Square;
+            if (square.adjacencies != 0)
+            {
+                button.Text = Convert.ToString(square.adjacencies);
+            }
+            else if (square.hasMine)
+            {
+                gameOver();
+            }
+            else
+                floodFill(square.x, square.y);
         }
     }
 }
