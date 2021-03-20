@@ -52,14 +52,26 @@ namespace Coursework_Game
             placeMines();
             updateSquares();
         }
-
-        private void updateSquares()
+        private void generateBoard()
         {
+
             for (int x = 0; x < X_ELEMENTS; x++)
             {
                 for (int y = 0; y < Y_ELEMENTS; y++)
                 {
-                    updateSquare(x, y);
+                    Square square = new Square(x, y);
+                    squares[x, y] = square;
+                    Point point = new Point(x * 51 + 710, y * 51 + 250);
+                    Button button = new Button
+                    {
+                        Height = 50,
+                        Width = 50,
+                        Location = point,
+                        Tag = square,
+                    };
+                    button.Click += btnGameButton_Click;
+                    this.Controls.Add(button);
+                    buttons[x, y] = button;
                 }
             }
         }
@@ -80,27 +92,13 @@ namespace Coursework_Game
                 gameBoard[x+1, y+1] = true;
             }
         }
-
-        private void generateBoard()
+        private void updateSquares()
         {
-
             for (int x = 0; x < X_ELEMENTS; x++)
             {
                 for (int y = 0; y < Y_ELEMENTS; y++)
                 {
-                    Square square = new Square(x,y);
-                    squares[x,y]=square;
-                    Point point = new Point(x * 51 + 710, y * 51 + 250);
-                    Button button = new Button
-                    {
-                        Height = 50,
-                        Width = 50,
-                        Location = point,
-                        Tag = square,
-                    };
-                    button.Click += btnGameButton_Click;
-                    this.Controls.Add(button);
-                    buttons[x, y] = button;
+                    updateSquare(x, y);
                 }
             }
         }
