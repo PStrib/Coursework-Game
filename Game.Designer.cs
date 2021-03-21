@@ -29,8 +29,11 @@ namespace Coursework_Game
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Game));
             this.pboxAvatar = new System.Windows.Forms.PictureBox();
+            this.gameTimer = new System.Windows.Forms.Timer(this.components);
+            this.lblTimer = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pboxAvatar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,11 +47,28 @@ namespace Coursework_Game
             this.pboxAvatar.TabIndex = 0;
             this.pboxAvatar.TabStop = false;
             // 
+            // gameTimer
+            // 
+            this.gameTimer.Enabled = true;
+            this.gameTimer.Interval = 1000;
+            this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
+            // 
+            // lblTimer
+            // 
+            this.lblTimer.AutoSize = true;
+            this.lblTimer.Font = new System.Drawing.Font("Bahnschrift Condensed", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTimer.Location = new System.Drawing.Point(240, 295);
+            this.lblTimer.Name = "lblTimer";
+            this.lblTimer.Size = new System.Drawing.Size(58, 39);
+            this.lblTimer.TabIndex = 1;
+            this.lblTimer.Text = "0:00";
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(834, 461);
+            this.Controls.Add(this.lblTimer);
             this.Controls.Add(this.pboxAvatar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Game";
@@ -64,5 +84,7 @@ namespace Coursework_Game
         #endregion
 
         private System.Windows.Forms.PictureBox pboxAvatar;
+        private System.Windows.Forms.Timer gameTimer;
+        private System.Windows.Forms.Label lblTimer;
     }
 }

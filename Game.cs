@@ -34,9 +34,16 @@ namespace Coursework_Game
         }
 
         private User user;
+        private int ticks = 0;
         private const int X_ELEMENTS= 10;
         private const int Y_ELEMENTS = 10;
         private const int MINES = 10;
+        private const int SECONDS_IN_MINUTE = 60;
+        private int nonMines = (X_ELEMENTS * Y_ELEMENTS) - MINES;
+        private int nonMinesRevealed = 0;
+        private int flagsPlacedCorrectly = 0;
+        private int flagsPlacedIncorrectly = 0;
+
         private Button[,] buttons = new Button[X_ELEMENTS, Y_ELEMENTS];
         // gameBoard is 2 bigger in x and y so as to simplify the adjacencies algorithm
         private bool[,] gameBoard = new bool[X_ELEMENTS+2, Y_ELEMENTS+2];
@@ -114,7 +121,8 @@ namespace Coursework_Game
             {
                 Square square = squares[x, y];
                 square.hasMine = true;
-                square.adjacencies = 9;                
+                square.adjacencies = 9;
+                buttons[x, y].BackColor = Color.Red;
             }
             else
             {
@@ -168,7 +176,8 @@ namespace Coursework_Game
             }
             else
             {
-                button.Text = Convert.ToString(square.adjacencies);                
+                button.Text = Convert.ToString(square.adjacencies);
+                nonMinesRevealed += 1;
             }
             button.ForeColor = Color.Black;
             square.revealed = true;
@@ -186,6 +195,7 @@ namespace Coursework_Game
             }
             gameOverText();
             backToSplashscreen();
+            gameTimer.Stop();
         }
 
         private void backToSplashscreen()
@@ -199,15 +209,15 @@ namespace Coursework_Game
                 Location = point,
                 AutoSize = true,
             };
-            btnbackToSplashscreen.Click += BtnbackToSplashscreen_Click;
+            btnbackToSplashscreen.Click += btnRetry_Click;
             this.Controls.Add(btnbackToSplashscreen);
         }
 
-        private void BtnbackToSplashscreen_Click(object sender, EventArgs e)
+        private void btnRetry_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SplashScreen splashscreen = new SplashScreen();
-            splashscreen.ShowDialog();
+            Game game=new Game(user);
+            game.ShowDialog();
             this.Close();
         }
 
@@ -237,9 +247,20 @@ namespace Coursework_Game
             {
                 gameButtonLeftClick(button);
             }
+            haveIWon();
         }
 
-        private static void gameButtonRightClick(Button button)
+        private void haveIWon()
+        {
+            if (nonMinesRevealed == nonMines
+                || (flagsPlacedCorrectly == MINES && flagsPlacedIncorrectly == 0))
+            {
+                gameWon();
+                return;
+            }
+        }
+
+        private void gameButtonRightClick(Button button)
         {
             var square = button.Tag as Square;
             if (square.revealed==true)
@@ -249,12 +270,38 @@ namespace Coursework_Game
             square.hasFlag = !(square.hasFlag);
             if (square.hasFlag)
             {
-                button.Text="🚩";
-                button.ForeColor = Color.Red;
+                placeFlag(button, square);
             }
             else
             {
-                button.Text = "";
+                unplaceFlag(button, square);
+            }
+        }
+
+        private void unplaceFlag(Button button, Square square)
+        {
+            button.Text = "";
+            if (square.hasMine)
+            {
+                flagsPlacedCorrectly -= 1;
+            }
+            else
+            {
+                flagsPlacedIncorrectly -= 1;
+            }
+        }
+
+        private void placeFlag(Button button, Square square)
+        {
+            button.Text = "🚩";
+            button.ForeColor = Color.Red;
+            if (square.hasMine)
+            {
+                flagsPlacedCorrectly += 1;
+            }
+            else
+            {
+                flagsPlacedIncorrectly += 1;
             }
         }
 
@@ -274,13 +321,29 @@ namespace Coursework_Game
             }
             else if (square.adjacencies != 0)
             {
-
                 revealSquare(x, y);
             }
             else
             {
                 floodFill(x, y);
             }
+        }
+
+        private void gameWon()
+        {
+            MessageBox.Show("You win!");
+            gameTimer.Stop();
+            // TODO: Make a high score thingie
+            // recor high schore, (user, ticks)
+        }
+
+        private void gameTimer_Tick(object sender, EventArgs e)
+        {
+            ticks += 1;
+            int seconds = ticks % SECONDS_IN_MINUTE;
+            int minutes = ticks / SECONDS_IN_MINUTE;
+            lblTimer.Text = $"{minutes}:{seconds}";
+            //
         }
     }
 }
