@@ -25,6 +25,7 @@ namespace Coursework_Game
             this.Hide();
             SplashScreen splashscreen = new SplashScreen();
             splashscreen.ShowDialog();
+            this.Hide();
         }
 
         private void btnLogin_click(object sender, EventArgs e)
@@ -45,6 +46,7 @@ namespace Coursework_Game
             MessageBox.Show("You are logged in successfully!");
             Game game = new Game(user);
             game.ShowDialog();
+            this.Close();
         }
     }
 }

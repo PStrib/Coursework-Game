@@ -22,6 +22,7 @@ namespace Coursework_Game
             this.Hide();
             Register register = new Register();
             register.ShowDialog();
+            this.Close();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -29,6 +30,7 @@ namespace Coursework_Game
             this.Hide();
             Login login = new Login();
             login.ShowDialog();
+            this.Close();
         }
 
         private void btnHighScores_Click(object sender, EventArgs e)
@@ -36,6 +38,7 @@ namespace Coursework_Game
             this.Hide();
             HighScores highscores = new HighScores();
             highscores.ShowDialog();
+            this.Close();
         }
     }
 }

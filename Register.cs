@@ -44,6 +44,7 @@ namespace Coursework_Game
             this.Hide();
             SplashScreen splashscreen = new SplashScreen();
             splashscreen.ShowDialog();
+            this.Close();
         }
 
         private void btnCreateAccount_Click(object sender, EventArgs e)
@@ -97,6 +98,7 @@ namespace Coursework_Game
             this.Hide();
             SplashScreen splashscreen = new SplashScreen();
             splashscreen.ShowDialog();
+            this.Close();
         }
 
         private void btnChangeAvatar_Click(object sender, EventArgs e)
