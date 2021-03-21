@@ -20,6 +20,7 @@ namespace Coursework_Game
             public bool hasMine = false;
             public int adjacencies;
             public bool hasFlag = false;
+            public bool revealed = false;
             public Square(int x, int y)
             {
                 this.x = x;
@@ -68,8 +69,10 @@ namespace Coursework_Game
                         Width = 50,
                         Location = point,
                         Tag = square,
+                        Font=new Font("Bahnschrift", 24)
                     };
-                    button.Click += btnGameButton_Click;
+                    // TODO: support keyboard navigation (up=up etc)
+                    button.MouseDown += btnGameButton_Click;
                     this.Controls.Add(button);
                     buttons[x, y] = button;
                 }
@@ -134,38 +137,24 @@ namespace Coursework_Game
             if (x < 0 || y < 0 || x >= X_ELEMENTS || y >= Y_ELEMENTS)
                 return;
             Button button = buttons[x, y];
-            if (button.Text == "0")
+            if (button.Text != "")
             {
                 return;
             }
             var square = squares[x, y];
-            //if (square.adjacencies != 0)
-            //{
-            //    return;
-            //}
-            //reveal3x3(square);
+            if (squares[x, y].hasMine)
+            {
+                return;
+            }
             revealSquare(x, y);
+            if (square.adjacencies != 0)
+            {
+                return;
+            }
             floodFill(x, y + 1); // flood fill south
             floodFill(x, y - 1); // flood fill north
             floodFill(x + 1, y); // flood fill east
             floodFill(x - 1, y); // flood fill west
-        }
-
-        private void reveal3x3(Square square)
-        {
- 
-            var offsets = new[] { -1, 0, 1 };
-            foreach (int xOffset in offsets)
-            {
-                foreach (int yOffset in offsets)
-                {
-                    int x = square.x + xOffset;
-                    int y = square.y + yOffset;
-                    if (x < 0 || y < 0 || x >= X_ELEMENTS || y >= Y_ELEMENTS)
-                        continue;
-                    revealSquare(x, y);
-                }
-            }
         }
 
         private void revealSquare(int x, int y)
@@ -179,8 +168,10 @@ namespace Coursework_Game
             }
             else
             {
-                button.Text = Convert.ToString(square.adjacencies);
-            }             
+                button.Text = Convert.ToString(square.adjacencies);                
+            }
+            button.ForeColor = Color.Black;
+            square.revealed = true;
         }
 
         private void gameOver()
@@ -236,23 +227,58 @@ namespace Coursework_Game
         private void btnGameButton_Click(object sender, EventArgs e)
         {
             var button = sender as Button;
+            var me = e as MouseEventArgs;
+            if (me.Button == MouseButtons.Right)
+            {
+                gameButtonRightClick(button);
+            }
+            else
+            {
+                gameButtonLeftClick(button);
+            }
+        }
+
+        private static void gameButtonRightClick(Button button)
+        {
             var square = button.Tag as Square;
-            string str = button.Text;
-            //if (square.adjacencies != 0)
-            //{
-            //    revealSquare(square.x, square.y);
-            //}
+            if (square.revealed==true)
+            {
+                return;
+            }
+            square.hasFlag = !(square.hasFlag);
+            if (square.hasFlag)
+            {
+                button.Text="🚩";
+                button.ForeColor = Color.Red;
+            }
+            else
+            {
+                button.Text = "";
+            }
+        }
+
+        private void gameButtonLeftClick(Button button)
+        {
+            var square = button.Tag as Square;
+            int x = square.x;
+            int y = square.y;
+            if (square.hasFlag)
+            {
+                return; // If square has a flag, we don't want the mine under to explode.
+            }
+
             if (square.hasMine)
             {
                 gameOver();
             }
+            else if (square.adjacencies != 0)
+            {
+
+                revealSquare(x, y);
+            }
             else
             {
-                floodFill(square.x, square.y);
-            }
-            if (button.Text == str)
-            {
-                revealSquare(square.x, square.y);
+                floodFill(x, y);
             }
         }
     }
