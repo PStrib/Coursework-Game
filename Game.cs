@@ -19,7 +19,7 @@ namespace Coursework_Game
             public int x, y;
             public bool hasMine = false;
             public int adjacencies;
-
+            public bool hasFlag = false;
             public Square(int x, int y)
             {
                 this.x = x;
@@ -111,8 +111,7 @@ namespace Coursework_Game
             {
                 Square square = squares[x, y];
                 square.hasMine = true;
-                square.adjacencies = 9;
-                
+                square.adjacencies = 9;                
             }
             else
             {
@@ -128,7 +127,6 @@ namespace Coursework_Game
                     }
                 }
                 squares[x, y].adjacencies = noOfMines;
-                //buttons[x, y].Text = Convert.ToString(noOfMines);
             }
         }
         private void floodFill(int x, int y)
@@ -183,25 +181,58 @@ namespace Coursework_Game
         private void gameOver()
         {
             // TODO: nested for loops and reveal bombs
-            MessageBox.Show("Game Over!"); // Placeholder
+
+            gameOverText();
+
+            // Add a button to go back to the main screen
+            Point point = new Point(875, 780);
+            var btnbackToSplashscreen = new Button
+            {
+                Text = "Try Again?",
+                Font = new Font("Bahnschrift", 25, FontStyle.Bold),
+                Location = point,
+                AutoSize = true,
+            };
+            this.Controls.Add(btnbackToSplashscreen);
+        }
+
+        private void gameOverText()
+        {
+            Point point = new Point(660, 80);
+            var lblgameOver = new Label
+            {
+                Text = "Game Over!",
+                Font = new Font("Century Gothic", 80, FontStyle.Bold),
+                Location = point,
+                AutoSize = true,
+                BackColor = Color.Red,
+                ForeColor = Color.Azure,
+            };
+            this.Controls.Add(lblgameOver);
+            MessageBox.Show("You failed as a mine sweeper.\n\nYour entire platoon was killed in the blast.");
         }
 
         private void btnGameButton_Click(object sender, EventArgs e)
         {
             var button = sender as Button;
             var square = button.Tag as Square;
-            if (square.adjacencies != 0)
-            {
-                revealSquare(square.x, square.y);
-            }
-            else if (square.hasMine)
+            string str = button.Text;
+            //if (square.adjacencies != 0)
+            //{
+            //    revealSquare(square.x, square.y);
+            //}
+            if (square.hasMine)
             {
                 gameOver();
             }
             else
             {
                 floodFill(square.x, square.y);
-            }             
+            }
+            if (button.Text == str)
+            {
+                revealSquare(square.x, square.y);
+            }
         }
     }
 }

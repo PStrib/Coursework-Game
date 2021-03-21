@@ -37,7 +37,7 @@ namespace Coursework_Game
             // pboxAvatar
             // 
             this.pboxAvatar.Image = global::Coursework_Game.Properties.Resources.Thumbnail1;
-            this.pboxAvatar.Location = new System.Drawing.Point(722, 12);
+            this.pboxAvatar.Location = new System.Drawing.Point(28, 27);
             this.pboxAvatar.Name = "pboxAvatar";
             this.pboxAvatar.Size = new System.Drawing.Size(100, 100);
             this.pboxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
