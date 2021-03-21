@@ -181,9 +181,12 @@ namespace Coursework_Game
         private void gameOver()
         {
             // TODO: nested for loops and reveal bombs
-
             gameOverText();
+            backToSplashscreen();
+        }
 
+        private void backToSplashscreen()
+        {
             // Add a button to go back to the main screen
             Point point = new Point(875, 780);
             var btnbackToSplashscreen = new Button
