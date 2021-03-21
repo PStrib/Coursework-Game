@@ -32,9 +32,9 @@ namespace Coursework_Game
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashScreen));
             this.btnRegister = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnHighscores = new System.Windows.Forms.Button();
             this.SplashBackground = new System.Windows.Forms.PictureBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.SplashBackground)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,16 +64,6 @@ namespace Coursework_Game
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(200, 50);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(572, 57);
-            this.textBox1.TabIndex = 4;
-            this.textBox1.Text = "[PLACEHOLDER GAME TITLE]!";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // btnHighscores
             // 
             this.btnHighscores.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -94,6 +84,17 @@ namespace Coursework_Game
             this.SplashBackground.Size = new System.Drawing.Size(995, 473);
             this.SplashBackground.TabIndex = 2;
             this.SplashBackground.TabStop = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(343, 63);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(300, 52);
+            this.textBox1.TabIndex = 4;
+            this.textBox1.Text = "MINE SWEEPER";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // SplashScreen
             // 

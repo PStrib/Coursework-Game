@@ -135,15 +135,20 @@ namespace Coursework_Game
                 return;
             Button button = buttons[x, y];
             if (button.Text == "0")
+            {
                 return;
+            }
             var square = squares[x, y];
-            if (square.adjacencies != 0)
-                return;
-            reveal3x3(square);
-            floodFill(x, y + 2); // flood fill south
-            floodFill(x, y - 2); // flood fill north
-            floodFill(x + 2, y); // flood fill east
-            floodFill(x - 2, y); // flood fill west
+            //if (square.adjacencies != 0)
+            //{
+            //    return;
+            //}
+            //reveal3x3(square);
+            revealSquare(x, y);
+            floodFill(x, y + 1); // flood fill south
+            floodFill(x, y - 1); // flood fill north
+            floodFill(x + 1, y); // flood fill east
+            floodFill(x - 1, y); // flood fill west
         }
 
         private void reveal3x3(Square square)
@@ -180,7 +185,14 @@ namespace Coursework_Game
 
         private void gameOver()
         {
-            // TODO: nested for loops and reveal bombs
+            // Reveals all bombs and adjacencies
+            for (int x = 0; x < X_ELEMENTS; x++)
+            {
+                for (int y = 0; y < Y_ELEMENTS; y++)
+                {
+                    revealSquare(x,y);
+                }
+            }
             gameOverText();
             backToSplashscreen();
         }
@@ -196,20 +208,26 @@ namespace Coursework_Game
                 Location = point,
                 AutoSize = true,
             };
+            btnbackToSplashscreen.Click += BtnbackToSplashscreen_Click;
             this.Controls.Add(btnbackToSplashscreen);
+        }
+
+        private void BtnbackToSplashscreen_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            SplashScreen splashscreen = new SplashScreen();
+            splashscreen.ShowDialog();
         }
 
         private void gameOverText()
         {
-            Point point = new Point(660, 80);
+            Point point = new Point(655, 70);
             var lblgameOver = new Label
             {
-                Text = "Game Over!",
-                Font = new Font("Century Gothic", 80, FontStyle.Bold),
+                Text = "GAME OVER",
+                Font = new Font("Fipps", 50),
                 Location = point,
                 AutoSize = true,
-                BackColor = Color.Red,
-                ForeColor = Color.Azure,
             };
             this.Controls.Add(lblgameOver);
             MessageBox.Show("You failed as a mine sweeper.\n\nYour entire platoon was killed in the blast.");
