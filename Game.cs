@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -122,7 +123,7 @@ namespace Coursework_Game
                 Square square = squares[x, y];
                 square.hasMine = true;
                 square.adjacencies = 9;
-                buttons[x, y].BackColor = Color.Red;
+            //    buttons[x, y].BackColor = Color.Red;
             }
             else
             {
@@ -342,8 +343,14 @@ namespace Coursework_Game
             ticks += 1;
             int seconds = ticks % SECONDS_IN_MINUTE;
             int minutes = ticks / SECONDS_IN_MINUTE;
-            lblTimer.Text = $"{minutes}:{seconds}";
-            //
+            gameTimer.Interval = random.Next(1, 1000);
+            //TimeSpan timeElapsed = new TimeSpan(0,0, minutes, seconds);
+
+            //lblTimer.Text = ("Time of Travel: {0:mm\\:ss}", timeElapsed);
+            TimeSpan timeElapsed = new TimeSpan(0, 0, ticks);
+            var s = timeElapsed.ToString(@"mm\:ss");
+            lblTimer.Text = $"{s}";
+            
         }
     }
 }

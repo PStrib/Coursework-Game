@@ -40,7 +40,8 @@ namespace Coursework_Game
             // pboxAvatar
             // 
             this.pboxAvatar.Image = global::Coursework_Game.Properties.Resources.Thumbnail1;
-            this.pboxAvatar.Location = new System.Drawing.Point(28, 27);
+            this.pboxAvatar.Location = new System.Drawing.Point(37, 33);
+            this.pboxAvatar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pboxAvatar.Name = "pboxAvatar";
             this.pboxAvatar.Size = new System.Drawing.Size(100, 100);
             this.pboxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -56,21 +57,23 @@ namespace Coursework_Game
             // lblTimer
             // 
             this.lblTimer.AutoSize = true;
-            this.lblTimer.Font = new System.Drawing.Font("Bahnschrift Condensed", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimer.Location = new System.Drawing.Point(240, 295);
+            this.lblTimer.Font = new System.Drawing.Font("Bahnschrift Condensed", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTimer.Location = new System.Drawing.Point(320, 363);
+            this.lblTimer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTimer.Name = "lblTimer";
-            this.lblTimer.Size = new System.Drawing.Size(58, 39);
+            this.lblTimer.Size = new System.Drawing.Size(147, 96);
             this.lblTimer.TabIndex = 1;
             this.lblTimer.Text = "0:00";
             // 
             // Game
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 461);
+            this.ClientSize = new System.Drawing.Size(1112, 567);
             this.Controls.Add(this.lblTimer);
             this.Controls.Add(this.pboxAvatar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Game";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Game";
