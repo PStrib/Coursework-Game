@@ -16,9 +16,11 @@ namespace Coursework_Game
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            //Application.Run(new SplashScreen()); //Uncomment to run the entire program
+            //Application.Run(new Game(p)); // Uncomment to just run the game
             //User p = new User();
-            Application.Run(new SplashScreen());
-            //Application.Run(new Game(p));
+            Application.Run(new WinScreen()); // Uncomment to just run the win screen
         }
     }
 }

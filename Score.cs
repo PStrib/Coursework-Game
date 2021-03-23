@@ -8,5 +8,9 @@ namespace Coursework_Game
 {
     class Score
     {
+        public int ticks;
+        public User user;
+
+        //Score s
     }
 }

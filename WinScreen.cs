@@ -17,9 +17,28 @@ namespace Coursework_Game
             InitializeComponent();
         }
 
-        private void lblWinBack_Click(object sender, EventArgs e)
+        private void btnPlayAgain_Click(object sender, EventArgs e)
         {
+            this.Hide();
+            User user = new User();
+            Game game = new Game(user);
+            game.ShowDialog();
+            this.Close();
+        }
 
+        private void btnQuitToDesktop_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Sure", "Some Title", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                this.Hide();
+                this.Close();
+                Application.Exit();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
         }
     }
 }

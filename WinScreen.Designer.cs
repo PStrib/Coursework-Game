@@ -31,41 +31,71 @@ namespace Coursework_Game
         {
             this.lblWin = new System.Windows.Forms.Label();
             this.btnRestart = new System.Windows.Forms.Button();
+            this.btnQuitToDesktop = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblWin
             // 
             this.lblWin.AutoSize = true;
             this.lblWin.BackColor = System.Drawing.Color.Transparent;
-            this.lblWin.Font = new System.Drawing.Font("Gazelle", 80F);
-            this.lblWin.Location = new System.Drawing.Point(89, 31);
+            this.lblWin.Font = new System.Drawing.Font("Gazelle", 80.24999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWin.Location = new System.Drawing.Point(66, 26);
+            this.lblWin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblWin.Name = "lblWin";
-            this.lblWin.Size = new System.Drawing.Size(630, 166);
+            this.lblWin.Size = new System.Drawing.Size(502, 132);
             this.lblWin.TabIndex = 0;
             this.lblWin.Text = "You Win!";
             // 
             // btnRestart
             // 
             this.btnRestart.BackColor = System.Drawing.Color.Transparent;
-            this.btnRestart.Font = new System.Drawing.Font("Gazelle", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRestart.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnRestart.Font = new System.Drawing.Font("Gazelle", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRestart.ForeColor = System.Drawing.Color.ForestGreen;
             this.btnRestart.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnRestart.Location = new System.Drawing.Point(117, 621);
+            this.btnRestart.Location = new System.Drawing.Point(177, 337);
+            this.btnRestart.Margin = new System.Windows.Forms.Padding(2);
             this.btnRestart.Name = "btnRestart";
-            this.btnRestart.Size = new System.Drawing.Size(220, 54);
+            this.btnRestart.Size = new System.Drawing.Size(250, 40);
             this.btnRestart.TabIndex = 1;
-            this.btnRestart.Text = "Play Again?";
+            this.btnRestart.Text = "PLAY AGAIN?";
             this.btnRestart.UseVisualStyleBackColor = false;
+            this.btnRestart.Click += new System.EventHandler(this.btnPlayAgain_Click);
+            // 
+            // btnQuitToDesktop
+            // 
+            this.btnQuitToDesktop.Font = new System.Drawing.Font("Gazelle", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQuitToDesktop.ForeColor = System.Drawing.Color.ForestGreen;
+            this.btnQuitToDesktop.Location = new System.Drawing.Point(177, 453);
+            this.btnQuitToDesktop.Name = "btnQuitToDesktop";
+            this.btnQuitToDesktop.Size = new System.Drawing.Size(250, 40);
+            this.btnQuitToDesktop.TabIndex = 2;
+            this.btnQuitToDesktop.Text = "Quit to Desktop";
+            this.btnQuitToDesktop.UseVisualStyleBackColor = true;
+            this.btnQuitToDesktop.Click += new System.EventHandler(this.btnQuitToDesktop_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Gazelle", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(232, 416);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(143, 34);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Or maybe";
             // 
             // WinScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Chartreuse;
-            this.ClientSize = new System.Drawing.Size(782, 753);
+            this.ClientSize = new System.Drawing.Size(586, 612);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnQuitToDesktop);
             this.Controls.Add(this.btnRestart);
             this.Controls.Add(this.lblWin);
             this.ForeColor = System.Drawing.Color.Purple;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "WinScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "You Win!";
@@ -79,5 +109,7 @@ namespace Coursework_Game
 
         private System.Windows.Forms.Label lblWin;
         private System.Windows.Forms.Button btnRestart;
+        private System.Windows.Forms.Button btnQuitToDesktop;
+        private System.Windows.Forms.Label label1;
     }
 }

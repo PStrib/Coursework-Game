@@ -332,10 +332,11 @@ namespace Coursework_Game
 
         private void gameWon()
         {
-            MessageBox.Show("You win!");
             gameTimer.Stop();
+            MessageBox.Show("You win!");
+            
             // TODO: Make a high score thingie
-            // record high schore, (user, ticks)
+            // record high score, (user, ticks)
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
