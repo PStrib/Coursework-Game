@@ -28,7 +28,7 @@ namespace Coursework_Game
 
         private void btnQuitToDesktop_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Sure", "Some Title", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to exit to desktop?", "This will close the program", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 this.Hide();

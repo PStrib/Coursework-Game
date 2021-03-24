@@ -194,9 +194,9 @@ namespace Coursework_Game
                     revealSquare(x,y);
                 }
             }
-            gameOverText();
-            backToSplashscreen();
             gameTimer.Stop();
+            gameOverText();
+            backToSplashscreen();          
         }
 
         private void backToSplashscreen()
@@ -224,12 +224,11 @@ namespace Coursework_Game
 
         private void gameOverText()
         {
-            Point point = new Point(655, 70);
             var lblgameOver = new Label
             {
                 Text = "GAME OVER",
                 Font = new Font("Fipps", 50),
-                Location = point,
+                Location = new Point(655, 70),
                 AutoSize = true,
             };
             this.Controls.Add(lblgameOver);
@@ -333,8 +332,11 @@ namespace Coursework_Game
         private void gameWon()
         {
             gameTimer.Stop();
-            MessageBox.Show("You win!");
-            
+
+            this.Hide();
+            WinScreen winScreen = new WinScreen();
+            winScreen.ShowDialog();
+            this.Close();
             // TODO: Make a high score thingie
             // record high score, (user, ticks)
         }
