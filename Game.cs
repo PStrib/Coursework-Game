@@ -196,22 +196,21 @@ namespace Coursework_Game
             }
             gameTimer.Stop();
             gameOverText();
-            backToSplashscreen();          
+            retry();          
         }
 
-        private void backToSplashscreen()
+        private void retry()
         {
-            // Add a button to go back to the main screen
             Point point = new Point(875, 780);
-            var btnbackToSplashscreen = new Button
+            var btnRetry = new Button
             {
                 Text = "Try Again?",
                 Font = new Font("Bahnschrift", 25, FontStyle.Bold),
                 Location = point,
                 AutoSize = true,
             };
-            btnbackToSplashscreen.Click += btnRetry_Click;
-            this.Controls.Add(btnbackToSplashscreen);
+            btnRetry.Click += btnRetry_Click;
+            this.Controls.Add(btnRetry);
         }
 
         private void btnRetry_Click(object sender, EventArgs e)
@@ -334,7 +333,7 @@ namespace Coursework_Game
             gameTimer.Stop();
 
             this.Hide();
-            WinScreen winScreen = new WinScreen();
+            WinScreen winScreen = new WinScreen(user);
             winScreen.ShowDialog();
             this.Close();
             // TODO: Make a high score thingie

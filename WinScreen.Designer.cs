@@ -29,6 +29,7 @@ namespace Coursework_Game
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WinScreen));
             this.lblWin = new System.Windows.Forms.Label();
             this.btnRestart = new System.Windows.Forms.Button();
             this.btnQuitToDesktop = new System.Windows.Forms.Button();
@@ -95,6 +96,7 @@ namespace Coursework_Game
             this.Controls.Add(this.btnRestart);
             this.Controls.Add(this.lblWin);
             this.ForeColor = System.Drawing.Color.Purple;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "WinScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

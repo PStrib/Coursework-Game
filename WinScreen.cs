@@ -12,16 +12,18 @@ namespace Coursework_Game
 {
     public partial class WinScreen : Form
     {
-        public WinScreen()
+        private User user;
+        public WinScreen(User user)
         {
             InitializeComponent();
+            this.user = user;
         }
+        
 
         private void btnPlayAgain_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            User user = new User();
-            Game game = new Game(user);
+            this.Hide();            
+            Game game = new Game(this.user);
             game.ShowDialog();
             this.Close();
         }
