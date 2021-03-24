@@ -34,14 +34,14 @@ namespace Coursework_Game
             this.pboxAvatar = new System.Windows.Forms.PictureBox();
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.lblTimer = new System.Windows.Forms.Label();
+            this.btnAddTime = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pboxAvatar)).BeginInit();
             this.SuspendLayout();
             // 
             // pboxAvatar
             // 
             this.pboxAvatar.Image = global::Coursework_Game.Properties.Resources.Thumbnail1;
-            this.pboxAvatar.Location = new System.Drawing.Point(37, 33);
-            this.pboxAvatar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pboxAvatar.Location = new System.Drawing.Point(576, 297);
             this.pboxAvatar.Name = "pboxAvatar";
             this.pboxAvatar.Size = new System.Drawing.Size(100, 100);
             this.pboxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -58,22 +58,32 @@ namespace Coursework_Game
             // 
             this.lblTimer.AutoSize = true;
             this.lblTimer.Font = new System.Drawing.Font("Bahnschrift Condensed", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimer.Location = new System.Drawing.Point(320, 363);
-            this.lblTimer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTimer.Location = new System.Drawing.Point(546, 426);
             this.lblTimer.Name = "lblTimer";
-            this.lblTimer.Size = new System.Drawing.Size(147, 96);
+            this.lblTimer.Size = new System.Drawing.Size(146, 77);
             this.lblTimer.TabIndex = 1;
-            this.lblTimer.Text = "0:00";
+            this.lblTimer.Text = "00:00";
+            // 
+            // btnAddTime
+            // 
+            this.btnAddTime.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddTime.Location = new System.Drawing.Point(559, 506);
+            this.btnAddTime.Name = "btnAddTime";
+            this.btnAddTime.Size = new System.Drawing.Size(124, 38);
+            this.btnAddTime.TabIndex = 2;
+            this.btnAddTime.Text = "+5 Seconds";
+            this.btnAddTime.UseVisualStyleBackColor = true;
+            this.btnAddTime.Click += new System.EventHandler(this.btnAddTime_Click);
             // 
             // Game
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1112, 567);
+            this.ClientSize = new System.Drawing.Size(834, 596);
+            this.Controls.Add(this.btnAddTime);
             this.Controls.Add(this.lblTimer);
             this.Controls.Add(this.pboxAvatar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Game";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Game";
@@ -89,5 +99,6 @@ namespace Coursework_Game
         private System.Windows.Forms.PictureBox pboxAvatar;
         private System.Windows.Forms.Timer gameTimer;
         private System.Windows.Forms.Label lblTimer;
+        private System.Windows.Forms.Button btnAddTime;
     }
 }

@@ -26,7 +26,7 @@ namespace Coursework_Game
         }
         private void populateAvatars()
         {
-            avatars = new Image[5];
+            avatars = new Image[NUM_AVATARS];
             avatars[0] = Properties.Resources.Thumbnail1;
             avatars[1] = Properties.Resources.Thumbnail2;
             avatars[2] = Properties.Resources.Thumbnail3;

@@ -356,5 +356,12 @@ namespace Coursework_Game
             lblTimer.Text = $"{s}";
             
         }
+
+        private void btnAddTime_Click(object sender, EventArgs e)
+        {
+            ticks += 5;
+            TimeSpan timeElapsed = new TimeSpan(0, 0, ticks);
+            var s = timeElapsed.ToString(@"mm\:ss");
+        }
     }
 }
