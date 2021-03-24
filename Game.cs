@@ -352,10 +352,7 @@ namespace Coursework_Game
             ticks += 1;
             int seconds = ticks % SECONDS_IN_MINUTE;
             int minutes = ticks / SECONDS_IN_MINUTE;
-            gameTimer.Interval = random.Next(1, 1000);
-            //TimeSpan timeElapsed = new TimeSpan(0,0, minutes, seconds);
-
-            //lblTimer.Text = ("Time of Travel: {0:mm\\:ss}", timeElapsed);
+            gameTimer.Interval = random.Next(1, 1000); // Sets the tick interval to a random value
             TimeSpan timeElapsed = new TimeSpan(0, 0, ticks);
             var s = timeElapsed.ToString(@"mm\:ss");
             lblTimer.Text = $"{s}";
