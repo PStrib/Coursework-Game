@@ -44,6 +44,7 @@ namespace Coursework_Game
         private int nonMinesRevealed = 0;
         private int flagsPlacedCorrectly = 0;
         private int flagsPlacedIncorrectly = 0;
+        private bool isGameOver = false;
 
         private Button[,] buttons = new Button[X_ELEMENTS, Y_ELEMENTS];
         // gameBoard is 2 bigger in x and y so as to simplify the adjacencies algorithm
@@ -194,6 +195,7 @@ namespace Coursework_Game
                     revealSquare(x,y);
                 }
             }
+            isGameOver = true;
             gameTimer.Stop();
             gameOverText();
             retry();          
@@ -238,6 +240,10 @@ namespace Coursework_Game
         {
             var button = sender as Button;
             var me = e as MouseEventArgs;
+            if (isGameOver)
+            {
+                return; // If user has been exploded, we don't want them to be able trigger a win state
+            }
             if (me.Button == MouseButtons.Right)
             {
                 gameButtonRightClick(button);
@@ -309,6 +315,7 @@ namespace Coursework_Game
             var square = button.Tag as Square;
             int x = square.x;
             int y = square.y;
+
             if (square.hasFlag)
             {
                 return; // If square has a flag, we don't want the mine under to explode.
