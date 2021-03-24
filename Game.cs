@@ -124,7 +124,7 @@ namespace Coursework_Game
                 Square square = squares[x, y];
                 square.hasMine = true;
                 square.adjacencies = 9;
-            //    buttons[x, y].BackColor = Color.Red;
+                buttons[x, y].BackColor = Color.Blue; // Uncomment to cheat and make the mines blue
             }
             else
             {
@@ -340,7 +340,7 @@ namespace Coursework_Game
             gameTimer.Stop();
 
             this.Hide();
-            WinScreen winScreen = new WinScreen(user);
+            WinScreen winScreen = new WinScreen(user, ticks);
             winScreen.ShowDialog();
             this.Close();
             // TODO: Make a high score thingie
@@ -350,9 +350,7 @@ namespace Coursework_Game
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             ticks += 1;
-            int seconds = ticks % SECONDS_IN_MINUTE;
-            int minutes = ticks / SECONDS_IN_MINUTE;
-            gameTimer.Interval = random.Next(1, 1000); // Sets the tick interval to a random value
+            //gameTimer.Interval = random.Next(1, 1000); // Sets the tick interval to a random value
             TimeSpan timeElapsed = new TimeSpan(0, 0, ticks);
             var s = timeElapsed.ToString(@"mm\:ss");
             lblTimer.Text = $"{s}";

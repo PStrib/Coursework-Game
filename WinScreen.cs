@@ -13,10 +13,15 @@ namespace Coursework_Game
     public partial class WinScreen : Form
     {
         private User user;
-        public WinScreen(User user)
+        private int ticks;
+        public WinScreen(User user, int ticks)
         {
             InitializeComponent();
             this.user = user;
+            this.ticks = ticks;
+            //TimeSpan timeElapsed = new TimeSpan(0, 0, this.ticks);
+            //var s = timeElapsed.ToString(@"mm\:ss");
+            lblTimeDisplay.Text = (ticks+" Seconds");
         }
         
 

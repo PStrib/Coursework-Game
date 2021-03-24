@@ -34,6 +34,8 @@ namespace Coursework_Game
             this.btnRestart = new System.Windows.Forms.Button();
             this.btnQuitToDesktop = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblTimeDisplay = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblWin
@@ -85,12 +87,34 @@ namespace Coursework_Game
             this.label1.TabIndex = 3;
             this.label1.Text = "Or maybe";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Bahnschrift Condensed", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(171, 181);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(100, 35);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "You took:";
+            // 
+            // lblTimeDisplay
+            // 
+            this.lblTimeDisplay.AutoSize = true;
+            this.lblTimeDisplay.Font = new System.Drawing.Font("Bahnschrift Condensed", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTimeDisplay.Location = new System.Drawing.Point(268, 181);
+            this.lblTimeDisplay.Name = "lblTimeDisplay";
+            this.lblTimeDisplay.Size = new System.Drawing.Size(124, 35);
+            this.lblTimeDisplay.TabIndex = 5;
+            this.lblTimeDisplay.Text = "00 Seconds";
+            // 
             // WinScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Chartreuse;
             this.ClientSize = new System.Drawing.Size(586, 612);
+            this.Controls.Add(this.lblTimeDisplay);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnQuitToDesktop);
             this.Controls.Add(this.btnRestart);
@@ -113,5 +137,7 @@ namespace Coursework_Game
         private System.Windows.Forms.Button btnRestart;
         private System.Windows.Forms.Button btnQuitToDesktop;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTimeDisplay;
     }
 }

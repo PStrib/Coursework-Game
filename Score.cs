@@ -6,11 +6,25 @@ using System.Threading.Tasks;
 
 namespace Coursework_Game
 {
-    class Score
+    public class Score : IComparable<Score>
     {
-        public int ticks;
-        public User user;
+        public int ticks { get; }
+        public string user { get; }
 
-        //Score s
+        public Score(int ticks, string user)
+        {
+            this.ticks = ticks;
+            this.user = user;
+        }
+
+        public int CompareTo(Score other)
+        {
+            return this.ticks.CompareTo(other.ticks);
+        }
+
+        public override string ToString()
+        {
+            return $"{{{user}, {ticks}}}";
+        }
     }
 }
