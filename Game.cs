@@ -339,29 +339,37 @@ namespace Coursework_Game
         {
             gameTimer.Stop();
 
+            Score score = new Score(ticks, user);
+
+
             this.Hide();
             WinScreen winScreen = new WinScreen(user, ticks);
             winScreen.ShowDialog();
             this.Close();
             // TODO: Make a high score thingie
             // record high score, (user, ticks)
+
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             ticks += 1;
             //gameTimer.Interval = random.Next(1, 1000); // Sets the tick interval to a random value
-            TimeSpan timeElapsed = new TimeSpan(0, 0, ticks);
-            var s = timeElapsed.ToString(@"mm\:ss");
-            lblTimer.Text = $"{s}";
+            refreshTime();
             
         }
 
         private void btnAddTime_Click(object sender, EventArgs e)
         {
             ticks += 5;
+            refreshTime();
+        }
+
+        private void refreshTime()
+        {
             TimeSpan timeElapsed = new TimeSpan(0, 0, ticks);
             var s = timeElapsed.ToString(@"mm\:ss");
+            lblTimer.Text = $"{s}";
         }
     }
 }

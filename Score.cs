@@ -9,9 +9,9 @@ namespace Coursework_Game
     public class Score : IComparable<Score>
     {
         public int ticks { get; }
-        public string user { get; }
+        public User user { get; }
 
-        public Score(int ticks, string user)
+        public Score(int ticks, User user)
         {
             this.ticks = ticks;
             this.user = user;
