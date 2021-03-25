@@ -11,7 +11,7 @@ namespace Coursework_Game
     class Scores
     {
         private static SortedSet<Score> ss;
-        private const string FILENAME = "Highscores.csv";
+        private const string FILENAME = "Highscores.txt";
 
         public Scores()
         {
@@ -25,11 +25,26 @@ namespace Coursework_Game
 
         private void load()
         {
-            string[] lines = File.ReadAllLines(FILENAME);
-            foreach(string line in lines)
+            //string[] lines = File.ReadAllLines(FILENAME);
+            string line;
+            try
             {
-                TextFieldParser
+                StreamReader sr = new StreamReader("FILENAME");
+                line = sr.ReadLine();
+                while (line != null)
+                {
+                    //Read the next line
+                    line = sr.ReadLine();
+                    ss.Add(line);
+                }
             }
+            finally
+            {
+
+            }
+
+
+            
         }
 
         public List<Score> ListAll()
