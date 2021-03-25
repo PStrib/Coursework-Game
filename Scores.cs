@@ -18,33 +18,21 @@ namespace Coursework_Game
             if (ss == null)
             {
                 ss = new SortedSet<Score>();
-
+                readHighscoresFromFile();
             }
             
         }
 
-        private void load()
+        private void readHighscoresFromFile()
         {
-            //string[] lines = File.ReadAllLines(FILENAME);
-            string line;
+            Stream sr;
             try
             {
-                StreamReader sr = new StreamReader("FILENAME");
-                line = sr.ReadLine();
-                while (line != null)
-                {
-                    //Read the next line
-                    line = sr.ReadLine();
-                    ss.Add(line);
-                }
+                sr = File.OpenRead(FILENAME);
             }
-            finally
-            {
-
-            }
-
-
-            
+            catch (FileNotFoundException) { return; }
+            sr = new StreamReader();
+            ss = (Dictionary<string, User>);
         }
 
         public List<Score> ListAll()

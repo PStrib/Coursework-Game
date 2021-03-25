@@ -31,7 +31,6 @@ namespace Coursework_Game
             catch (FileNotFoundException) { return;}
             var bf = new BinaryFormatter();
             users=(Dictionary<string, User>)bf.Deserialize(sr);
-
         }
         private void writeUsersToFile()
         {
