@@ -22,7 +22,7 @@ namespace Coursework_Game
             return this.ticks.CompareTo(other.ticks);
         }
 
-        public override string ToString()
+        public string returnScore()
         {
             return $"{{{user}, {ticks}}}";
         }

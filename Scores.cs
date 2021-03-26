@@ -20,19 +20,15 @@ namespace Coursework_Game
                 ss = new SortedSet<Score>();
                 readHighscoresFromFile();
             }
-            
         }
-
-        private void readHighscoresFromFile()
+        public void readHighscoresFromFile()
         {
-            Stream sr;
-            try
+            var lines = File.ReadAllLines(FILENAME);
+
+            for (int i = 0; i < lines.Length; i++)
             {
-                sr = File.OpenRead(FILENAME);
+                var fields = lines[i].Split(' ');
             }
-            catch (FileNotFoundException) { return; }
-            sr = new StreamReader();
-            ss = (Dictionary<string, User>);
         }
 
         public List<Score> ListAll()
