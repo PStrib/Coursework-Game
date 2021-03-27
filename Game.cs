@@ -338,25 +338,20 @@ namespace Coursework_Game
         private void gameWon()
         {
             gameTimer.Stop();
-
             Score score = new Score(ticks, user);
-
-
+            Scores scores = new Scores();
+            scores.Add(score);
             this.Hide();
-            WinScreen winScreen = new WinScreen(user, ticks);
+            WinScreen winScreen = new WinScreen(user);
             winScreen.ShowDialog();
             this.Close();
-            // TODO: Make a high score thingie
-            // record high score, (user, ticks)
-
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             ticks += 1;
             //gameTimer.Interval = random.Next(1, 1000); // Sets the tick interval to a random value
-            refreshTime();
-            
+            refreshTime();            
         }
 
         private void btnAddTime_Click(object sender, EventArgs e)

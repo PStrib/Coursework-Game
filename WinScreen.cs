@@ -13,24 +13,13 @@ namespace Coursework_Game
     public partial class WinScreen : Form
     {
         private User user;
-        private int ticks;
-        private static Scores scores;
         
-        public WinScreen(User user, int ticks)
+        public WinScreen(Score score)
         {
             InitializeComponent();
-            this.user = user;
-            this.ticks = ticks;
-            if (scores == null)
-            {
-                scores = new Scores();
-            }
-            Score score = new Score(ticks, user);
-            scores.Add(score);
-            lblTimeDisplay.Text = (ticks+" Seconds");
+            lblTimeDisplay.Text = score.ticks + " Seconds";
         }
         
-
         private void btnPlayAgain_Click(object sender, EventArgs e)
         {
             this.Hide();            
