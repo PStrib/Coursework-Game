@@ -53,20 +53,24 @@ namespace Coursework_Game
 
         public User GetUser(string username, string password)
         {
-            User user;
-            if (!users.TryGetValue(username, out user))
-            {
-                throw new Exception("User does not exist");
-            }
+            User user = GetUser(username); 
             byte[] attemptPasswordHash = hash(password);
             if (!user.PasswordHash.SequenceEqual(attemptPasswordHash))
             {
                 throw new Exception("Incorrect Password");
             }
             return user;
-
         }
 
+        public User GetUser(string username)
+        {
+            User user;
+            if (!users.TryGetValue(username, out user))
+            {
+                throw new Exception("User does not exist");
+            }
+            return user;
+        }
         private static byte[] hash(string password)
         {
             byte[] passwordBytes = Encoding.UTF8.GetBytes(password);

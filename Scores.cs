@@ -21,13 +21,19 @@ namespace Coursework_Game
                 readHighscoresFromFile();
             }
         }
+        // The Highscores.txt file is formatted "user ticks"
         public void readHighscoresFromFile()
         {
-            var lines = File.ReadAllLines(FILENAME);
-
-            for (int i = 0; i < lines.Length; i++)
+            Users users = new Users();
+            string[] lines = File.ReadAllLines(FILENAME);
+            foreach (string line in lines)
             {
-                var fields = lines[i].Split(' ');
+                string[] fields = line.Split(' '); // Splits by a space
+                string username = fields[0];
+                User user = users.GetUser(username);
+                int ticks = Convert.ToInt32(fields[1]);
+                Score score = new Score(ticks, user);
+                ss.Add(score);
             }
         }
 
