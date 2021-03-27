@@ -14,13 +14,19 @@ namespace Coursework_Game
     {
         private User user;
         private int ticks;
+        private static Scores scores;
+        
         public WinScreen(User user, int ticks)
         {
             InitializeComponent();
             this.user = user;
             this.ticks = ticks;
-            //TimeSpan timeElapsed = new TimeSpan(0, 0, this.ticks);
-            //var s = timeElapsed.ToString(@"mm\:ss");
+            if (scores == null)
+            {
+                scores = new Scores();
+            }
+            Score score = new Score(ticks, user);
+            scores.Add(score);
             lblTimeDisplay.Text = (ticks+" Seconds");
         }
         

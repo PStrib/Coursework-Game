@@ -22,9 +22,10 @@ namespace Coursework_Game
             }
         }
         // The Highscores.txt file is formatted "user ticks"
-        public void readHighscoresFromFile()
+        private void readHighscoresFromFile()
         {
             Users users = new Users();
+            if (!File.Exists(FILENAME)) { return; }
             string[] lines = File.ReadAllLines(FILENAME);
             foreach (string line in lines)
             {
@@ -36,7 +37,6 @@ namespace Coursework_Game
                 ss.Add(score);
             }
         }
-
         public List<Score> ListAll()
         {
             var l = new List<Score> { };
@@ -47,9 +47,21 @@ namespace Coursework_Game
             return l;
         }
 
+        private void addScoresToFile()
+        {
+            using (StreamWriter file = new StreamWriter(FILENAME))
+            {
+                foreach (Score score in ss)
+                {
+                    string line = $"{score.user.Username} {score.ticks}";
+                    file.WriteLine(line);
+                }
+            }
+        }
         public void Add(Score score)
         {
             ss.Add(score);
+            addScoresToFile();
         }
     }
 }

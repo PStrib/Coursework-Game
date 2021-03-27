@@ -12,6 +12,8 @@ namespace Coursework_Game
 {
     public partial class HighScores : Form
     {
+        private const int MAX_SCORES = 20;
+
         public HighScores()
         {
             InitializeComponent();
@@ -28,9 +30,22 @@ namespace Coursework_Game
 
         private void createTextBox()
         {
+            Scores scores = new Scores();
+            List<string> text = new List<string>();
+            text.Add("User:\tTime: ");
+            int index = 1;
+            foreach(Score score in scores.ListAll())
+            {
+                if(index> MAX_SCORES) { break; }
+                string line = $"{score.user.Username}\t{score.ticks}";
+                text.Add(line);
+                index += 1;
+            }
+            string textString = string.Join("\n", text);
+
             TextBox textBox1 = new TextBox
             {
-                Text = "User:\tTime:",
+                Text = textString,
                 Font = new Font("Gazelle", 19),
                 Location = new Point(150, 150),
                 Multiline = true,

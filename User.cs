@@ -9,9 +9,10 @@ namespace Coursework_Game
         private string username, forename, surname;
         private byte[] passwordHash;
         private Image avatar;
-        public User()
-        {
 
+        public override string ToString()
+        {
+            return $"User({username})";
         }
 
         public string Username { get => username; set => username = value; }
