@@ -75,6 +75,7 @@ namespace Coursework_Game
             this.Controls.Add(this.Background);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HighScores";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HighScores";
             ((System.ComponentModel.ISupportInitialize)(this.Background)).EndInit();
             this.ResumeLayout(false);

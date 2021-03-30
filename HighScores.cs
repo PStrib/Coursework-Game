@@ -37,7 +37,8 @@ namespace Coursework_Game
             foreach(Score score in scores.ListAll())
             {
                 if(index> MAX_SCORES) { break; }
-                string line = $"{score.user.Username}\t{score.ticks}";
+                string timeTaken = score.ticks.ToString("000");
+                string line = $"{score.user.Username}\t {timeTaken}";
                 text.Add(line);
                 index += 1;
             }
@@ -46,7 +47,7 @@ namespace Coursework_Game
             TextBox textBox1 = new TextBox
             {
                 Text = textString,
-                Font = new Font("Gazelle", 19),
+                Font = new Font("Gazelle", 14),
                 Location = new Point(150, 150),
                 Multiline = true,
                 ScrollBars = ScrollBars.Vertical,

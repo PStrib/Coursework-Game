@@ -342,7 +342,7 @@ namespace Coursework_Game
             Scores scores = new Scores();
             scores.Add(score);
             this.Hide();
-            WinScreen winScreen = new WinScreen(user);
+            WinScreen winScreen = new WinScreen(score);
             winScreen.ShowDialog();
             this.Close();
         }
