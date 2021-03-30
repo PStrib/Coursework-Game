@@ -57,9 +57,9 @@ namespace Coursework_Game
             }
             User user = new User();
 
-            if (txtUsername.TextLength < 4)
+            if (txtUsername.TextLength < 1||txtUsername.TextLength>6)
             {
-                MessageBox.Show("Invalid Username:\n\nUsername must be at least 3 characters long");
+                MessageBox.Show("Invalid Username:\n\nUsername must be between one and six characters");
                 return;
             }
 
