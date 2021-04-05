@@ -206,7 +206,10 @@ namespace Coursework_Game
                 return; // If user has been exploded, we don't want them to be able trigger a win state
             }
 
-            haveIWon();
+            if (haveIWon())
+            {
+                gameWon();
+            }
         }
 
         private void gameButtonRightClick(Button button)

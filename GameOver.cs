@@ -61,14 +61,11 @@ namespace Coursework_Game
             this.Close();
         }
 
-        private void haveIWon()
+        private bool haveIWon()
         {
-            if (nonMinesRevealed == nonMines
-                || (flagsPlacedCorrectly == MINES && flagsPlacedIncorrectly == 0))
-            {
-                gameWon();
-                return;
-            }
+            return nonMinesRevealed == nonMines
+                || (flagsPlacedCorrectly == MINES && flagsPlacedIncorrectly == 0);
+
         }
 
         private void gameWon()
