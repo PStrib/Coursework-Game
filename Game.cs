@@ -39,6 +39,12 @@ namespace Coursework_Game
         private const int X_ELEMENTS= 10;
         private const int Y_ELEMENTS = 10;
         private const int MINES = 10;
+
+        // Controls the positioning on the screen of the button panel
+        private const int ELEMENT_SIZE = 50;
+        private const int X_START = 710;
+        private const int Y_START = 250;
+
         private int nonMines = (X_ELEMENTS * Y_ELEMENTS) - MINES;
         private int nonMinesRevealed = 0;
         private int flagsPlacedCorrectly = 0;
@@ -70,11 +76,12 @@ namespace Coursework_Game
                 {
                     Square square = new Square(x, y);
                     squares[x, y] = square;
-                    Point point = new Point(x * 51 + 710, y * 51 + 250);
+
+                    Point point = new Point(x * (ELEMENT_SIZE+1) + X_START, y * (ELEMENT_SIZE + 1) + Y_START);
                     Button button = new Button
                     {
-                        Height = 50,
-                        Width = 50,
+                        Height = ELEMENT_SIZE,
+                        Width = ELEMENT_SIZE,
                         Location = point,
                         Tag = square,
                         Font=new Font("Bahnschrift", 24)
@@ -122,8 +129,8 @@ namespace Coursework_Game
             {
                 Square square = squares[x, y];
                 square.hasMine = true;
-                square.adjacencies = 9;
-                buttons[x, y].BackColor = Color.Blue; // Uncomment to cheat and make the mines blue
+                square.adjacencies = -1;
+                //buttons[x, y].BackColor = Color.Blue; // Uncomment to cheat and make the mines blue
             }
             else
             {
@@ -151,7 +158,7 @@ namespace Coursework_Game
                 return;
             }
             var square = squares[x, y];
-            if (squares[x, y].hasMine)
+            if (square.hasMine)
             {
                 return;
             }

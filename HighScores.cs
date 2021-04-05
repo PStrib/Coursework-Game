@@ -32,7 +32,7 @@ namespace Coursework_Game
         {
             Scores scores = new Scores();
             List<string> text = new List<string>();
-            text.Add("User:\tTime: ");
+            text.Add("User:\tTime:\r\n");
             int index = 1;
             foreach(Score score in scores.ListAll())
             {
