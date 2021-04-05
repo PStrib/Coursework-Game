@@ -44,7 +44,7 @@ namespace Coursework_Game
         private int nonMinesRevealed = 0;
         private int flagsPlacedCorrectly = 0;
         private int flagsPlacedIncorrectly = 0;
-        private bool isGameOver = false;
+        private bool isGameLost = false;
 
         private Button[,] buttons = new Button[X_ELEMENTS, Y_ELEMENTS];
         // gameBoard is 2 bigger in x and y so as to simplify the adjacencies algorithm
@@ -185,65 +185,13 @@ namespace Coursework_Game
             square.revealed = true;
         }
 
-        private void gameOver()
-        {
-            // Reveals all bombs and adjacencies
-            for (int x = 0; x < X_ELEMENTS; x++)
-            {
-                for (int y = 0; y < Y_ELEMENTS; y++)
-                {
-                    revealSquare(x,y);
-                }
-            }
-            isGameOver = true;
-            gameTimer.Stop();
-            gameOverText();
-            retry();          
-        }
 
-        private void retry()
-        {
-            Point point = new Point(875, 780);
-            var btnRetry = new Button
-            {
-                Text = "Try Again?",
-                Font = new Font("Bahnschrift", 25, FontStyle.Bold),
-                Location = point,
-                AutoSize = true,
-            };
-            btnRetry.Click += btnRetry_Click;
-            this.Controls.Add(btnRetry);
-        }
-
-        private void btnRetry_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Game game=new Game(user);
-            game.ShowDialog();
-            this.Close();
-        }
-
-        private void gameOverText()
-        {
-            var lblgameOver = new Label
-            {
-                Text = "GAME OVER",
-                Font = new Font("Fipps", 50),
-                Location = new Point(655, 70),
-                AutoSize = true,
-            };
-            this.Controls.Add(lblgameOver);
-            MessageBox.Show("You failed as a mine sweeper.\n\nYour entire platoon was killed in the blast.");
-        }
 
         private void btnGameButton_Click(object sender, EventArgs e)
         {
             var button = sender as Button;
             var me = e as MouseEventArgs;
-            if (isGameOver)
-            {
-                return; // If user has been exploded, we don't want them to be able trigger a win state
-            }
+ 
             if (me.Button == MouseButtons.Right)
             {
                 gameButtonRightClick(button);
@@ -252,17 +200,13 @@ namespace Coursework_Game
             {
                 gameButtonLeftClick(button);
             }
-            haveIWon();
-        }
 
-        private void haveIWon()
-        {
-            if (nonMinesRevealed == nonMines
-                || (flagsPlacedCorrectly == MINES && flagsPlacedIncorrectly == 0))
+            if (isGameLost)
             {
-                gameWon();
-                return;
+                return; // If user has been exploded, we don't want them to be able trigger a win state
             }
+
+            haveIWon(); // Still runs haveIWon despite having returned on line 245
         }
 
         private void gameButtonRightClick(Button button)
@@ -323,28 +267,17 @@ namespace Coursework_Game
 
             if (square.hasMine)
             {
-                gameOver();
+                gameLost();
+                return;
             }
-            else if (square.adjacencies != 0)
+
+            if (square.adjacencies != 0)
             {
                 revealSquare(x, y);
+                return;
             }
-            else
-            {
-                floodFill(x, y);
-            }
-        }
-
-        private void gameWon()
-        {
-            gameTimer.Stop();
-            Score score = new Score(ticks, user);
-            Scores scores = new Scores();
-            scores.Add(score);
-            this.Hide();
-            WinScreen winScreen = new WinScreen(score);
-            winScreen.ShowDialog();
-            this.Close();
+            
+            floodFill(x, y);     
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
