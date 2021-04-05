@@ -39,7 +39,6 @@ namespace Coursework_Game
         private const int X_ELEMENTS= 10;
         private const int Y_ELEMENTS = 10;
         private const int MINES = 10;
-        private const int SECONDS_IN_MINUTE = 60;
         private int nonMines = (X_ELEMENTS * Y_ELEMENTS) - MINES;
         private int nonMinesRevealed = 0;
         private int flagsPlacedCorrectly = 0;
