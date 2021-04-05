@@ -63,7 +63,6 @@ namespace Coursework_Game
 
         private void haveIWon()
         {
-            // Problem may be here-------------------------------------
             if (nonMinesRevealed == nonMines
                 || (flagsPlacedCorrectly == MINES && flagsPlacedIncorrectly == 0))
             {
