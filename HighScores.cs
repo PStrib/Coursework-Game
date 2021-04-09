@@ -32,7 +32,7 @@ namespace Coursework_Game
         {
             Scores scores = new Scores();
             List<string> text = new List<string>();
-            text.Add("User:\tTime:\r\n");
+            text.Add("User:\tTime(S):\r\n");
             int index = 1;
             foreach(Score score in scores.ListAll())
             {
@@ -47,7 +47,7 @@ namespace Coursework_Game
             TextBox textBox1 = new TextBox
             {
                 Text = textString,
-                Font = new Font("Gazelle", 16),
+                Font = new Font("Gazelle", 15),
                 Location = new Point(150, 150),
                 Multiline = true,
                 ScrollBars = ScrollBars.Vertical,
