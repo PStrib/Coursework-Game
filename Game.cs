@@ -303,7 +303,6 @@ namespace Coursework_Game
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             secondsElapsed += 1;
-            //gameTimer.Interval = random.Next(1, 1000); // Sets the tick interval to a random value
             refreshTime();            
         }
 
