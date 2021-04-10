@@ -12,18 +12,19 @@ namespace Coursework_Game
 {
     public partial class WinScreen : Form
     {
-        private User user;
+        private Score score;
         
         public WinScreen(Score score)
         {
             InitializeComponent();
             lblTimeDisplay.Text = score.ticks + " Seconds";
+            this.score = score;
         }
         
         private void btnPlayAgain_Click(object sender, EventArgs e)
         {
             this.Hide();            
-            Game game = new Game(this.user);
+            Game game = new Game(score.user);
             game.ShowDialog();
             this.Close();
         }

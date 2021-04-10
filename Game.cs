@@ -34,29 +34,33 @@ namespace Coursework_Game
             }
         }
 
-        private User user;
-        private int ticks = 0;
-        private const int X_ELEMENTS= 10;
-        private const int Y_ELEMENTS = 10;
-        private const int MINES = 10;
-
         // Controls the positioning on the screen of the button panel
         private const int ELEMENT_SIZE = 50;
         private const int X_START = 710;
         private const int Y_START = 250;
 
-        private int nonMines = (X_ELEMENTS * Y_ELEMENTS) - MINES;
+        private const int X_ELEMENTS = 10;
+        private const int Y_ELEMENTS = 10;
+        private const int MINES = 10;
+        private const int NON_MINES = (X_ELEMENTS * Y_ELEMENTS) - MINES;
+
+        private User user;
+
+        private int secondsElapsed = 0;
+        
         private int nonMinesRevealed = 0;
         private int flagsPlacedCorrectly = 0;
         private int flagsPlacedIncorrectly = 0;
+        // isGameLost is only true if the user left clicks an unflagged mine.
         private bool isGameLost = false;
 
+        // Buttons are placed on the form for the user to see and squares are just info about the buttons
         private Button[,] buttons = new Button[X_ELEMENTS, Y_ELEMENTS];
+        private Square[,] squares = new Square[X_ELEMENTS, Y_ELEMENTS];
         // gameBoard is 2 bigger in x and y so as to simplify the adjacencies algorithm
         private bool[,] gameBoard = new bool[X_ELEMENTS+2, Y_ELEMENTS+2];
-        private Square[,] squares = new Square[X_ELEMENTS,Y_ELEMENTS];
-        Random random = new Random();
 
+        Random random = new Random();
 
         public Game(User user)
         {
@@ -123,14 +127,14 @@ namespace Coursework_Game
 
         private void updateSquare(int x, int y)
         {
-            int noOfMines=0;
+            int noOfMines = 0;
             var offsets = new[] { -1, 0, 1 };
-            if (gameBoard[x + 1, y + 1])//if the coordinates being checked are a mine
+            if (gameBoard[x + 1, y + 1]) // If the coordinates being checked are a mine
             {
                 Square square = squares[x, y];
                 square.hasMine = true;
-                square.adjacencies = -1;
-                //buttons[x, y].BackColor = Color.Blue; // Uncomment to cheat and make the mines blue
+                //square.adjacencies = -1; // So as to not trip up floodfill algorithm
+                buttons[x, y].BackColor = Color.Blue; // Uncomment to cheat and make the mines blue
             }
             else
             {
@@ -162,7 +166,7 @@ namespace Coursework_Game
             {
                 return;
             }
-            revealSquare(x, y);
+            revealSquareIfNotRevealedAlready(x, y);
             if (square.adjacencies != 0)
             {
                 return;
@@ -173,10 +177,15 @@ namespace Coursework_Game
             floodFill(x - 1, y); // flood fill west
         }
 
-        private void revealSquare(int x, int y)
+        private void revealSquareIfNotRevealedAlready(int x, int y)
         {
             Button button = buttons[x, y];
             Square square = squares[x, y];
+            if (square.revealed)
+            {
+                return;
+            }
+
             if (square.hasMine)
             {
                 button.BackColor = Color.Red;
@@ -282,7 +291,7 @@ namespace Coursework_Game
 
             if (square.adjacencies != 0)
             {
-                revealSquare(x, y);
+                revealSquareIfNotRevealedAlready(x, y);
                 return;
             }
             
@@ -291,20 +300,20 @@ namespace Coursework_Game
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            ticks += 1;
+            secondsElapsed += 1;
             //gameTimer.Interval = random.Next(1, 1000); // Sets the tick interval to a random value
             refreshTime();            
         }
 
         private void btnAddTime_Click(object sender, EventArgs e)
         {
-            ticks += 5;
+            secondsElapsed += 5;
             refreshTime();
         }
 
         private void refreshTime()
         {
-            TimeSpan timeElapsed = new TimeSpan(0, 0, ticks);
+            TimeSpan timeElapsed = new TimeSpan(0, 0, secondsElapsed);
             var s = timeElapsed.ToString(@"mm\:ss");
             lblTimer.Text = $"{s}";
         }

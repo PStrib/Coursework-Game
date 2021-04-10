@@ -17,7 +17,7 @@ namespace Coursework_Game
             {
                 for (int y = 0; y < Y_ELEMENTS; y++)
                 {
-                    revealSquare(x, y);
+                    revealSquareIfNotRevealedAlready(x, y);
                 }
             }
             isGameLost = true;
@@ -63,21 +63,20 @@ namespace Coursework_Game
 
         private bool haveIWon()
         {
-            return nonMinesRevealed == nonMines
-                || (flagsPlacedCorrectly == MINES && flagsPlacedIncorrectly == 0);
-
+            return nonMinesRevealed == NON_MINES
+                || ((flagsPlacedCorrectly == MINES) && (flagsPlacedIncorrectly == 0));
         }
 
         private void gameWon()
         {
             gameTimer.Stop();
-            Score score = new Score(ticks, user);
+            Score score = new Score(secondsElapsed, user);
             Scores scores = new Scores();
             scores.Add(score);
-            this.Hide();
+            //this.Hide();
+            //this.Close();
             WinScreen winScreen = new WinScreen(score);
-            winScreen.ShowDialog();
-            this.Close();
+            winScreen.ShowDialog();            
         }
     }
 }
