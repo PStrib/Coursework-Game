@@ -71,9 +71,9 @@ namespace Coursework_Game
             placeMines();
             updateSquares();
         }
+
         private void generateBoard()
         {
-
             for (int x = 0; x < X_ELEMENTS; x++)
             {
                 for (int y = 0; y < Y_ELEMENTS; y++)
@@ -81,6 +81,7 @@ namespace Coursework_Game
                     Square square = new Square(x, y);
                     squares[x, y] = square;
 
+                    // ELEMENT_SIZE + 1 because there's a 1 pixel gap between buttons.
                     Point point = new Point(x * (ELEMENT_SIZE+1) + X_START, y * (ELEMENT_SIZE + 1) + Y_START);
                     Button button = new Button
                     {
@@ -103,8 +104,7 @@ namespace Coursework_Game
             // For next time try shuffling
             for (int i = 0; i < MINES; i++)
             {
-                int x;
-                int y;
+                int x, y;
                 do
                 {
                     x = random.Next(Y_ELEMENTS);
@@ -120,52 +120,53 @@ namespace Coursework_Game
             {
                 for (int y = 0; y < Y_ELEMENTS; y++)
                 {
-                    updateSquare(x, y);
+                    setSquareInfo(x, y);
                 }
             }
         }
 
-        private void updateSquare(int x, int y)
+        private void setSquareInfo(int x, int y)
         {
-            int noOfMines = 0;
-            var offsets = new[] { -1, 0, 1 };
             if (gameBoard[x + 1, y + 1]) // If the coordinates being checked are a mine
             {
                 Square square = squares[x, y];
                 square.hasMine = true;
-                //square.adjacencies = -1; // So as to not trip up floodfill algorithm
-                buttons[x, y].BackColor = Color.Blue; // Uncomment to cheat and make the mines blue
+                //buttons[x, y].BackColor = Color.Blue; // Uncomment to cheat and make the mines blue
             }
             else
             {
-                foreach (int xOffset in offsets)
-                {
-                    foreach (int yOffset in offsets)
-                    {
-
-                        if (gameBoard[x + xOffset + 1, y + yOffset + 1])
-                        {
-                            noOfMines += 1;
-                        }
-                    }
-                }
-                squares[x, y].adjacencies = noOfMines;
+                squares[x, y].adjacencies = countAdjacencies(x, y);
             }
         }
+
+        private int countAdjacencies(int x, int y)
+        {
+            int noOfMines = 0;
+            var offsets = new[] { -1, 0, 1 };
+            foreach (int xOffset in offsets)
+            {
+                foreach (int yOffset in offsets)
+                {
+                    if (gameBoard[x + xOffset + 1, y + yOffset + 1])
+                    {
+                        noOfMines += 1;
+                    }
+                }
+            }
+            return noOfMines;
+        }
+
         private void floodFill(int x, int y)
         {
             if (x < 0 || y < 0 || x >= X_ELEMENTS || y >= Y_ELEMENTS)
                 return;
             Button button = buttons[x, y];
-            if (button.Text != "")
-            {
-                return;
-            }
             var square = squares[x, y];
-            if (square.hasMine)
+            if (square.revealed || square.hasMine)
             {
                 return;
             }
+
             revealSquareIfNotRevealedAlready(x, y);
             if (square.adjacencies != 0)
             {
@@ -205,15 +206,16 @@ namespace Coursework_Game
         private void btnGameButton_Click(object sender, EventArgs e)
         {
             var button = sender as Button;
-            var me = e as MouseEventArgs;
- 
-            if (me.Button == MouseButtons.Right)
+            var mouse = e as MouseEventArgs;
+
+            switch (mouse.Button)
             {
-                gameButtonRightClick(button);
-            }
-            else
-            {
-                gameButtonLeftClick(button);
+                case MouseButtons.Right:
+                    gameButtonRightClick(button);
+                    break;
+                default:
+                    gameButtonLeftClick(button);
+                    break;
             }
 
             if (isGameLost)
@@ -230,7 +232,7 @@ namespace Coursework_Game
         private void gameButtonRightClick(Button button)
         {
             var square = button.Tag as Square;
-            if (square.revealed==true)
+            if (square.revealed)
             {
                 return;
             }
@@ -245,19 +247,6 @@ namespace Coursework_Game
             }
         }
 
-        private void unplaceFlag(Button button, Square square)
-        {
-            button.Text = "";
-            if (square.hasMine)
-            {
-                flagsPlacedCorrectly -= 1;
-            }
-            else
-            {
-                flagsPlacedIncorrectly -= 1;
-            }
-        }
-
         private void placeFlag(Button button, Square square)
         {
             button.Text = "🚩";
@@ -269,6 +258,19 @@ namespace Coursework_Game
             else
             {
                 flagsPlacedIncorrectly += 1;
+            }
+        }
+
+        private void unplaceFlag(Button button, Square square)
+        {
+            button.Text = "";
+            if (square.hasMine)
+            {
+                flagsPlacedCorrectly -= 1;
+            }
+            else
+            {
+                flagsPlacedIncorrectly -= 1;
             }
         }
 
@@ -314,8 +316,7 @@ namespace Coursework_Game
         private void refreshTime()
         {
             TimeSpan timeElapsed = new TimeSpan(0, 0, secondsElapsed);
-            var s = timeElapsed.ToString(@"mm\:ss");
-            lblTimer.Text = $"{s}";
+            lblTimer.Text = $"{timeElapsed:mm\\:ss}";
         }
     }
 }
