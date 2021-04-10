@@ -17,7 +17,7 @@ namespace Coursework_Game
         public WinScreen(Score score)
         {
             InitializeComponent();
-            lblTimeDisplay.Text = score.ticks + " Seconds";
+            lblTimeDisplay.Text = score.seconds + " Seconds";
             this.score = score;
         }
         

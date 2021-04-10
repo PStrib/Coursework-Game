@@ -12,7 +12,16 @@ namespace Coursework_Game
     {
         private void gameLost()
         {
-            // Reveals all bombs and adjacencies
+            revealAllSquares();
+            isGameLost = true;
+            gameTimer.Stop();
+            gameLostText();
+            retry();
+        }
+
+        // Reveals all mines and adjacencies
+        private void revealAllSquares()
+        {
             for (int x = 0; x < X_ELEMENTS; x++)
             {
                 for (int y = 0; y < Y_ELEMENTS; y++)
@@ -20,10 +29,6 @@ namespace Coursework_Game
                     revealSquareIfNotRevealedAlready(x, y);
                 }
             }
-            isGameLost = true;
-            gameTimer.Stop();
-            gameLostText();
-            retry();
         }
 
         private void gameLostText()
@@ -41,12 +46,11 @@ namespace Coursework_Game
 
         private void retry()
         {
-            Point point = new Point(875, 780);
             var btnRetry = new Button
             {
                 Text = "Try Again?",
                 Font = new Font("Bahnschrift", 25, FontStyle.Bold),
-                Location = point,
+                Location = new Point(875, 780),
                 AutoSize = true,
             };
             btnRetry.Click += btnRetry_Click;
@@ -56,9 +60,9 @@ namespace Coursework_Game
         private void btnRetry_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Game game = new Game(user);
-            game.ShowDialog();
             this.Close();
+            Game game = new Game(user);
+            game.ShowDialog();            
         }
 
         private bool haveIWon()
@@ -73,10 +77,10 @@ namespace Coursework_Game
             Score score = new Score(secondsElapsed, user);
             Scores scores = new Scores();
             scores.Add(score);
-            //this.Hide();
-            //this.Close();
+            this.Hide();
+            this.Close();
             WinScreen winScreen = new WinScreen(score);
-            winScreen.ShowDialog();            
+            winScreen.ShowDialog();
         }
     }
 }

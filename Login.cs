@@ -30,18 +30,19 @@ namespace Coursework_Game
 
         private void btnLogin_click(object sender, EventArgs e)
         {
-            string userName = txtUsername.Text;
-            string password = txtPassword1.Text;
             User user;
             try
             {
-                user=users.GetUser(userName, password);
+                string userName = txtUsername.Text;
+                string password = txtPassword1.Text;
+                user = users.GetUser(userName, password);
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return;
             }
+
             this.Hide();
             MessageBox.Show("You are logged in successfully!");
             Game game = new Game(user);

@@ -37,7 +37,7 @@ namespace Coursework_Game
             foreach(Score score in scores.ListAll())
             {
                 if(index> MAX_SCORES) { break; }
-                string timeTaken = score.ticks.ToString("000");
+                string timeTaken = score.seconds.ToString("000");
                 string line = $"{score.user.Username}\t {timeTaken}\r\n";
                 text.Add(line);
                 index += 1;

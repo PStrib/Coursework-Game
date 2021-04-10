@@ -8,23 +8,23 @@ namespace Coursework_Game
 {
     public class Score : IComparable<Score>
     {
-        public int ticks { get; }
+        public int seconds { get; }
         public User user { get; }
 
-        public Score(int ticks, User user)
+        public Score(int seconds, User user)
         {
-            this.ticks = ticks;
+            this.seconds = seconds;
             this.user = user;
         }
 
-        public int CompareTo(Score other)
+        public int CompareTo(Score that)
         {
-            return this.ticks.CompareTo(other.ticks);
+            return this.seconds.CompareTo(that.seconds);
         }
 
         public override string ToString()
         {
-            return $"{{{user}, {ticks}}}";
+            return $"{{{user}, {seconds}}}";
         }
     }
 }

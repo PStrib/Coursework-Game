@@ -32,8 +32,8 @@ namespace Coursework_Game
                 string[] fields = line.Split(' '); // Splits by a space
                 string username = fields[0];
                 User user = users.GetUser(username);
-                int ticks = Convert.ToInt32(fields[1]);
-                Score score = new Score(ticks, user);
+                int secondsTaken = Convert.ToInt32(fields[1]);
+                Score score = new Score(secondsTaken, user);
                 ss.Add(score);
             }
         }
@@ -53,7 +53,7 @@ namespace Coursework_Game
             {
                 foreach (Score score in ss)
                 {
-                    string line = $"{score.user.Username} {score.ticks}";
+                    string line = $"{score.user.Username} {score.seconds}";
                     file.WriteLine(line);
                 }
             }
