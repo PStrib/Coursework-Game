@@ -43,7 +43,7 @@ namespace Coursework_Game
         private const int X_ELEMENTS = 10;
         private const int Y_ELEMENTS = 10;
         private const int Z_ELEMENTS = 10;
-        private const int MINES = 10;
+        private const int MINES = 70;
         private const int NON_MINES = (X_ELEMENTS * Y_ELEMENTS * Z_ELEMENTS) - MINES;
 
         private User user;
@@ -72,29 +72,40 @@ namespace Coursework_Game
             pboxAvatar.Image = user.Avatar;
             placeMines();
             forAllSquares(generateSquare);
-            generateButtons();                      
+            forAllButtons(generateButton);
+            updateLayer();
         }
 
-        private void generateButtons()
+        private void updateLayer()
+        {
+            forAllButtons((int x, int y) => { buttons[x, y].Tag = squares[x, y, currentZ]; });
+            forAllButtons(paintButton);
+            maybeGreyZButtons();
+        }
+
+        private void generateButton(int x, int y)
+        {
+            // ELEMENT_SIZE + 1 because there's a 1 pixel gap between buttons.
+            Button button = new Button
+            {
+                Height = ELEMENT_SIZE,
+                Width = ELEMENT_SIZE,
+                Location = new Point(x * (ELEMENT_SIZE + 1) + X_START, y * (ELEMENT_SIZE + 1) + Y_START),
+                Font = new Font("Bahnschrift", 24)
+            };            
+            // TODO: support keyboard navigation (up=up etc)
+            button.MouseDown += btnGameButton_Click;
+            this.Controls.Add(button);
+            buttons[x, y] = button;           
+        }
+
+        private void forAllButtons(Action<int, int> action)
         {
             for (int x = 0; x < X_ELEMENTS; x++)
             {
                 for (int y = 0; y < Y_ELEMENTS; y++)
                 {
-                    // ELEMENT_SIZE + 1 because there's a 1 pixel gap between buttons.
-                    Button button = new Button
-                    {
-                        Height = ELEMENT_SIZE,
-                        Width = ELEMENT_SIZE,
-                        Location = new Point(x * (ELEMENT_SIZE + 1) + X_START, y * (ELEMENT_SIZE + 1) + Y_START),
-                        Tag = squares[x, y, currentZ],
-                        Font = new Font("Bahnschrift", 24)
-                    };
-                    paintButton(button);
-                    // TODO: support keyboard navigation (up=up etc)
-                    button.MouseDown += btnGameButton_Click;
-                    this.Controls.Add(button);
-                    buttons[x, y] = button;
+                    action(x,y);
                 }
             }
         }
@@ -109,7 +120,7 @@ namespace Coursework_Game
                 {
                     x = random.Next(Y_ELEMENTS);
                     y = random.Next(X_ELEMENTS);
-                    z = currentZ;
+                    z = random.Next(Z_ELEMENTS);
                 }
                 while (gameBoard[x+1, y+1, z+1] == true);
                 gameBoard[x+1, y+1, z+1] = true;
@@ -182,6 +193,8 @@ namespace Coursework_Game
             {
                 return;
             }
+            floodFill(x, y, z + 1); // flood fill up
+            floodFill(x, y, z - 1); // flood fill down
             floodFill(x, y + 1, z); // flood fill south
             floodFill(x, y - 1, z); // flood fill north
             floodFill(x + 1, y, z); // flood fill east
@@ -211,6 +224,11 @@ namespace Coursework_Game
             paintButton(button);
         }
 
+        private void paintButton(int x, int y)
+        {
+            paintButton(buttons[x, y]);
+        }
+
         private void paintButton(Button button)
         {
             Color backColour = defaultBackground();
@@ -223,7 +241,7 @@ namespace Coursework_Game
 
             if (square.hasMine)
             {
-                backColour = Color.Blue; // Uncomment to cheat and make the mines blue
+                //backColour = Color.Blue; // Uncomment to cheat and make the mines blue
             }           
 
             if (!square.revealed)
@@ -239,7 +257,21 @@ namespace Coursework_Game
 
             else
             {
-                paintButtonWith(button, backColour, Color.Black, $"{square.adjacencies}");
+                Color foreColour;
+                switch (square.adjacencies)
+                {
+                    case 0: paintButtonWith(button, Color.DarkGray, Color.Black, ""); return;
+                    case 1: foreColour = Color.Blue; break;
+                    case 2: foreColour = Color.Green; break;
+                    case 3: foreColour = Color.Red; break;
+                    case 4: foreColour = Color.Navy; break;
+                    case 5: foreColour = Color.Brown; break;
+                    case 6: foreColour = Color.DarkCyan; break;
+                    case 7: foreColour = Color.Black; break;
+                    case 8: foreColour = Color.Gray; break;
+                    default: foreColour = Color.MediumPurple; break;
+                }
+                paintButtonWith(button, backColour, foreColour, $"{square.adjacencies}");
             }
         }
 
@@ -368,6 +400,40 @@ namespace Coursework_Game
         {
             TimeSpan timeElapsed = new TimeSpan(0, 0, secondsElapsed);
             lblTimer.Text = $"{timeElapsed:mm\\:ss}";
+        }
+
+        private void btnZ_Click(object sender, EventArgs e)
+        {
+            int step;
+            Button button = sender as Button;
+            if (button == btnUp)
+            {
+                step = 1;
+            }
+            else
+            {
+                step = -1;
+            }
+            currentZ += step;
+            maybeGreyZButtons();
+            updateLayer();
+        }
+
+        private void maybeGreyZButtons()
+        {
+            switch (currentZ)
+            {
+                case 0:
+                    btnDown.Enabled = false;
+                    break;
+                case Z_ELEMENTS - 1:
+                    btnUp.Enabled = false;
+                    break;
+                default:
+                    btnUp.Enabled = true;
+                    btnDown.Enabled = true;
+                    break; 
+            }
         }
     }
 }

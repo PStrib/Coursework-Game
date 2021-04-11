@@ -35,13 +35,15 @@ namespace Coursework_Game
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.lblTimer = new System.Windows.Forms.Label();
             this.btnAddTime = new System.Windows.Forms.Button();
+            this.btnUp = new System.Windows.Forms.Button();
+            this.btnDown = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pboxAvatar)).BeginInit();
             this.SuspendLayout();
             // 
             // pboxAvatar
             // 
             this.pboxAvatar.Image = global::Coursework_Game.Properties.Resources.Thumbnail1;
-            this.pboxAvatar.Location = new System.Drawing.Point(576, 297);
+            this.pboxAvatar.Location = new System.Drawing.Point(583, 245);
             this.pboxAvatar.Name = "pboxAvatar";
             this.pboxAvatar.Size = new System.Drawing.Size(100, 100);
             this.pboxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -58,7 +60,7 @@ namespace Coursework_Game
             // 
             this.lblTimer.AutoSize = true;
             this.lblTimer.Font = new System.Drawing.Font("Bahnschrift Condensed", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimer.Location = new System.Drawing.Point(546, 426);
+            this.lblTimer.Location = new System.Drawing.Point(555, 363);
             this.lblTimer.Name = "lblTimer";
             this.lblTimer.Size = new System.Drawing.Size(146, 77);
             this.lblTimer.TabIndex = 1;
@@ -67,7 +69,7 @@ namespace Coursework_Game
             // btnAddTime
             // 
             this.btnAddTime.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddTime.Location = new System.Drawing.Point(559, 506);
+            this.btnAddTime.Location = new System.Drawing.Point(568, 443);
             this.btnAddTime.Name = "btnAddTime";
             this.btnAddTime.Size = new System.Drawing.Size(124, 38);
             this.btnAddTime.TabIndex = 2;
@@ -75,11 +77,35 @@ namespace Coursework_Game
             this.btnAddTime.UseVisualStyleBackColor = true;
             this.btnAddTime.Click += new System.EventHandler(this.btnAddTime_Click);
             // 
+            // btnUp
+            // 
+            this.btnUp.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUp.Location = new System.Drawing.Point(568, 517);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(124, 38);
+            this.btnUp.TabIndex = 3;
+            this.btnUp.Text = "UP";
+            this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnZ_Click);
+            // 
+            // btnDown
+            // 
+            this.btnDown.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDown.Location = new System.Drawing.Point(568, 561);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(124, 38);
+            this.btnDown.TabIndex = 4;
+            this.btnDown.Text = "DOWN";
+            this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnZ_Click);
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(834, 596);
+            this.Controls.Add(this.btnDown);
+            this.Controls.Add(this.btnUp);
             this.Controls.Add(this.btnAddTime);
             this.Controls.Add(this.lblTimer);
             this.Controls.Add(this.pboxAvatar);
@@ -100,5 +126,7 @@ namespace Coursework_Game
         private System.Windows.Forms.Timer gameTimer;
         private System.Windows.Forms.Label lblTimer;
         private System.Windows.Forms.Button btnAddTime;
+        private System.Windows.Forms.Button btnUp;
+        private System.Windows.Forms.Button btnDown;
     }
 }
