@@ -17,20 +17,21 @@ namespace Coursework_Game
 
         private class Square 
         {
-            public int x, y;
+            public int x, y, z;
             public bool hasMine = false;
             public int adjacencies;
             public bool hasFlag = false;
             public bool revealed = false;
-            public Square(int x, int y)
+            public Square(int x, int y, int z)
             {
                 this.x = x;
                 this.y = y;
+                this.z = z;
             }
 
             public override string ToString()
             {
-                return $"{x}, {y}, hasmine={hasMine}, adjacencies={adjacencies}";
+                return $"Square({x}, {y}, {z}, hasmine={hasMine}, adjacencies={adjacencies})";
             }
         }
 
@@ -41,8 +42,9 @@ namespace Coursework_Game
 
         private const int X_ELEMENTS = 10;
         private const int Y_ELEMENTS = 10;
+        private const int Z_ELEMENTS = 10;
         private const int MINES = 10;
-        private const int NON_MINES = (X_ELEMENTS * Y_ELEMENTS) - MINES;
+        private const int NON_MINES = (X_ELEMENTS * Y_ELEMENTS * Z_ELEMENTS) - MINES;
 
         private User user;
 
@@ -56,9 +58,10 @@ namespace Coursework_Game
 
         // Buttons are placed on the form for the user to see and squares are just info about the buttons
         private Button[,] buttons = new Button[X_ELEMENTS, Y_ELEMENTS];
-        private Square[,] squares = new Square[X_ELEMENTS, Y_ELEMENTS];
-        // gameBoard is 2 bigger in x and y so as to simplify the adjacencies algorithm
-        private bool[,] gameBoard = new bool[X_ELEMENTS+2, Y_ELEMENTS+2];
+        private Square[,,] squares = new Square[X_ELEMENTS, Y_ELEMENTS, Z_ELEMENTS];
+        private int currentZ = Z_ELEMENTS - 1;
+        // gameBoard is 2 bigger in all dimensions so as to simplify the adjacencies algorithm
+        private bool[,,] gameBoard = new bool[X_ELEMENTS+2, Y_ELEMENTS+2, Z_ELEMENTS+2];
 
         Random random = new Random();
 
@@ -67,30 +70,27 @@ namespace Coursework_Game
             this.user = user;
             InitializeComponent();
             pboxAvatar.Image = user.Avatar;
-            generateBoard();
             placeMines();
-            updateSquares();
+            forAllSquares(generateSquare);
+            generateButtons();                      
         }
 
-        private void generateBoard()
+        private void generateButtons()
         {
             for (int x = 0; x < X_ELEMENTS; x++)
             {
                 for (int y = 0; y < Y_ELEMENTS; y++)
                 {
-                    Square square = new Square(x, y);
-                    squares[x, y] = square;
-
                     // ELEMENT_SIZE + 1 because there's a 1 pixel gap between buttons.
-                    Point point = new Point(x * (ELEMENT_SIZE+1) + X_START, y * (ELEMENT_SIZE + 1) + Y_START);
                     Button button = new Button
                     {
                         Height = ELEMENT_SIZE,
                         Width = ELEMENT_SIZE,
-                        Location = point,
-                        Tag = square,
-                        Font=new Font("Bahnschrift", 24)
+                        Location = new Point(x * (ELEMENT_SIZE + 1) + X_START, y * (ELEMENT_SIZE + 1) + Y_START),
+                        Tag = squares[x, y, currentZ],
+                        Font = new Font("Bahnschrift", 24)
                     };
+                    paintButton(button);
                     // TODO: support keyboard navigation (up=up etc)
                     button.MouseDown += btnGameButton_Click;
                     this.Controls.Add(button);
@@ -104,42 +104,47 @@ namespace Coursework_Game
             // For next time try shuffling
             for (int i = 0; i < MINES; i++)
             {
-                int x, y;
+                int x, y, z;
                 do
                 {
                     x = random.Next(Y_ELEMENTS);
                     y = random.Next(X_ELEMENTS);
+                    z = currentZ;
                 }
-                while ((gameBoard[x+1, y+1] == true)) ;
-                gameBoard[x+1, y+1] = true;
+                while (gameBoard[x+1, y+1, z+1] == true);
+                gameBoard[x+1, y+1, z+1] = true;
             }
         }
-        private void updateSquares()
+
+        private void forAllSquares(Action<int, int, int> action)
         {
             for (int x = 0; x < X_ELEMENTS; x++)
             {
                 for (int y = 0; y < Y_ELEMENTS; y++)
                 {
-                    setSquareInfo(x, y);
+                    for (int z = 0; z < Z_ELEMENTS; z++)
+                    {
+                        action(x, y, z);
+                    }
                 }
             }
         }
 
-        private void setSquareInfo(int x, int y)
+        private void generateSquare(int x, int y, int z)
         {
-            if (gameBoard[x + 1, y + 1]) // If the coordinates being checked are a mine
+            Square square = new Square(x,y,z);
+            squares[x, y, z] = square;
+            if (gameBoard[x + 1, y + 1, z+1]) // If the coordinates being checked are a mine
             {
-                Square square = squares[x, y];
                 square.hasMine = true;
-                //buttons[x, y].BackColor = Color.Blue; // Uncomment to cheat and make the mines blue
             }
             else
             {
-                squares[x, y].adjacencies = countAdjacencies(x, y);
+                square.adjacencies = countAdjacencies(x, y, z);
             }
         }
 
-        private int countAdjacencies(int x, int y)
+        private int countAdjacencies(int x, int y, int z)
         {
             int noOfMines = 0;
             var offsets = new[] { -1, 0, 1 };
@@ -147,61 +152,108 @@ namespace Coursework_Game
             {
                 foreach (int yOffset in offsets)
                 {
-                    if (gameBoard[x + xOffset + 1, y + yOffset + 1])
+                    foreach (int zOffset in offsets)
                     {
-                        noOfMines += 1;
+                        if (gameBoard[x + xOffset + 1, y + yOffset + 1, z + zOffset + 1])
+                        {
+                            noOfMines += 1;
+                        }
                     }
+
                 }
             }
             return noOfMines;
         }
 
-        private void floodFill(int x, int y)
+        private void floodFill(int x, int y, int z)
         {
-            if (x < 0 || y < 0 || x >= X_ELEMENTS || y >= Y_ELEMENTS)
+            if (x < 0 || y < 0 || z < 0 || x >= X_ELEMENTS || y >= Y_ELEMENTS || z >= Z_ELEMENTS)
+            {
                 return;
-            Button button = buttons[x, y];
-            var square = squares[x, y];
+            }                
+            var square = squares[x, y, z];
             if (square.revealed || square.hasMine)
             {
                 return;
             }
 
-            revealSquareIfNotRevealedAlready(x, y);
+            revealSquareIfNotRevealedAlready(square);
             if (square.adjacencies != 0)
             {
                 return;
             }
-            floodFill(x, y + 1); // flood fill south
-            floodFill(x, y - 1); // flood fill north
-            floodFill(x + 1, y); // flood fill east
-            floodFill(x - 1, y); // flood fill west
+            floodFill(x, y + 1, z); // flood fill south
+            floodFill(x, y - 1, z); // flood fill north
+            floodFill(x + 1, y, z); // flood fill east
+            floodFill(x - 1, y, z); // flood fill west
         }
 
-        private void revealSquareIfNotRevealedAlready(int x, int y)
+        private void revealSquareIfNotRevealedAlready(int x, int y, int z)
         {
-            Button button = buttons[x, y];
-            Square square = squares[x, y];
+            revealSquareIfNotRevealedAlready(squares[x, y, z]);
+        }
+
+        private void revealSquareIfNotRevealedAlready(Square square)
+        {
+            
+            Button button = buttons[square.x, square.y];
             if (square.revealed)
             {
                 return;
             }
 
-            if (square.hasMine)
+            if(!square.hasMine)
             {
-                button.BackColor = Color.Red;
-                button.Text = "💣";
-            }
-            else
-            {
-                button.Text = Convert.ToString(square.adjacencies);
                 nonMinesRevealed += 1;
             }
-            button.ForeColor = Color.Black;
+
             square.revealed = true;
+            paintButton(button);
         }
 
+        private void paintButton(Button button)
+        {
+            Color backColour = defaultBackground();
+            Square square = button.Tag as Square;
+            if (square.hasFlag)
+            {
+                paintButtonWith(button, defaultBackground(), Color.Red, "🚩");
+                return;
+            }
 
+            if (square.hasMine)
+            {
+                backColour = Color.Blue; // Uncomment to cheat and make the mines blue
+            }           
+
+            if (!square.revealed)
+            {
+                paintButtonWith(button, backColour, Color.Black, "");
+                return;
+            }
+
+            if (square.hasMine)
+            {
+                paintButtonWith(button, Color.Red, Color.Black, "💣");
+            }
+
+            else
+            {
+                paintButtonWith(button, backColour, Color.Black, $"{square.adjacencies}");
+            }
+        }
+
+        private static Color defaultBackground()
+        {
+            return SystemColors.Control;
+        }
+
+        private void paintButtonWith(Button button, Color backColour, Color foreColour, string text)
+        {
+            button.ForeColor = foreColour;
+            button.BackColor = backColour;
+            button.Text = text;
+        }
 
         private void btnGameButton_Click(object sender, EventArgs e)
         {
@@ -249,8 +301,6 @@ namespace Coursework_Game
 
         private void placeFlag(Button button, Square square)
         {
-            button.Text = "🚩";
-            button.ForeColor = Color.Red;
             if (square.hasMine)
             {
                 flagsPlacedCorrectly += 1;
@@ -259,11 +309,11 @@ namespace Coursework_Game
             {
                 flagsPlacedIncorrectly += 1;
             }
+            paintButton(button);
         }
 
         private void unplaceFlag(Button button, Square square)
         {
-            button.Text = "";
             if (square.hasMine)
             {
                 flagsPlacedCorrectly -= 1;
@@ -272,6 +322,7 @@ namespace Coursework_Game
             {
                 flagsPlacedIncorrectly -= 1;
             }
+            paintButton(button);
         }
 
         private void gameButtonLeftClick(Button button)
@@ -279,6 +330,7 @@ namespace Coursework_Game
             var square = button.Tag as Square;
             int x = square.x;
             int y = square.y;
+            int z = square.z;
 
             if (square.hasFlag)
             {
@@ -293,11 +345,11 @@ namespace Coursework_Game
 
             if (square.adjacencies != 0)
             {
-                revealSquareIfNotRevealedAlready(x, y);
+                revealSquareIfNotRevealedAlready(square);
                 return;
             }
             
-            floodFill(x, y);     
+            floodFill(x, y, z);     
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)

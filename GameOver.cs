@@ -22,13 +22,7 @@ namespace Coursework_Game
         // Reveals all mines and adjacencies
         private void revealAllSquares()
         {
-            for (int x = 0; x < X_ELEMENTS; x++)
-            {
-                for (int y = 0; y < Y_ELEMENTS; y++)
-                {
-                    revealSquareIfNotRevealedAlready(x, y);
-                }
-            }
+            forAllSquares(revealSquareIfNotRevealedAlready);
         }
 
         private void gameLostText()
