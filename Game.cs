@@ -43,7 +43,7 @@ namespace Coursework_Game
         private const int X_ELEMENTS = 10;
         private const int Y_ELEMENTS = 10;
         private const int Z_ELEMENTS = 10;
-        private const int MINES = 70;
+        private const int MINES = 50;
         private const int NON_MINES = (X_ELEMENTS * Y_ELEMENTS * Z_ELEMENTS) - MINES;
 
         private User user;
@@ -260,7 +260,7 @@ namespace Coursework_Game
                 Color foreColour;
                 switch (square.adjacencies)
                 {
-                    case 0: paintButtonWith(button, Color.DarkGray, Color.Black, ""); return;
+                    case 0: paintButtonWith(button, Color.LightGray, Color.DarkGray, "0"); return;
                     case 1: foreColour = Color.Blue; break;
                     case 2: foreColour = Color.Green; break;
                     case 3: foreColour = Color.Red; break;
@@ -379,10 +379,23 @@ namespace Coursework_Game
             {
                 revealSquareIfNotRevealedAlready(square);
                 return;
-            }
-            
+            }           
             floodFill(x, y, z);     
         }
+
+        //private void keyPressed(object o, KeyPressEventArgs e)
+        //{
+        //    if (e.KeyChar == (Char)Keys.Down && btnDown.Enabled)
+        //    {
+        //        // Call btnZ_Click and send that it was the down button triggered.
+        //        MessageBox.Show("You pressed the Down arrow");
+        //    }
+        //    if (e.KeyChar == (Char)Keys.Up && btnUp.Enabled)
+        //    {
+        //        // Call btnZ_Click and send that it was the up button triggered
+        //        MessageBox.Show("You pressed the up arrow");
+        //    }
+        //}
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {

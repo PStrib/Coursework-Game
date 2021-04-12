@@ -43,7 +43,8 @@ namespace Coursework_Game
             // pboxAvatar
             // 
             this.pboxAvatar.Image = global::Coursework_Game.Properties.Resources.Thumbnail1;
-            this.pboxAvatar.Location = new System.Drawing.Point(583, 245);
+            this.pboxAvatar.Location = new System.Drawing.Point(783, 324);
+            this.pboxAvatar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pboxAvatar.Name = "pboxAvatar";
             this.pboxAvatar.Size = new System.Drawing.Size(100, 100);
             this.pboxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -59,19 +60,21 @@ namespace Coursework_Game
             // lblTimer
             // 
             this.lblTimer.AutoSize = true;
-            this.lblTimer.Font = new System.Drawing.Font("Bahnschrift Condensed", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimer.Location = new System.Drawing.Point(555, 363);
+            this.lblTimer.Font = new System.Drawing.Font("Bahnschrift Condensed", 40F);
+            this.lblTimer.Location = new System.Drawing.Point(764, 451);
+            this.lblTimer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTimer.Name = "lblTimer";
-            this.lblTimer.Size = new System.Drawing.Size(146, 77);
+            this.lblTimer.Size = new System.Drawing.Size(119, 65);
             this.lblTimer.TabIndex = 1;
             this.lblTimer.Text = "00:00";
             // 
             // btnAddTime
             // 
             this.btnAddTime.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddTime.Location = new System.Drawing.Point(568, 443);
+            this.btnAddTime.Location = new System.Drawing.Point(757, 545);
+            this.btnAddTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAddTime.Name = "btnAddTime";
-            this.btnAddTime.Size = new System.Drawing.Size(124, 38);
+            this.btnAddTime.Size = new System.Drawing.Size(165, 47);
             this.btnAddTime.TabIndex = 2;
             this.btnAddTime.Text = "+5 Seconds";
             this.btnAddTime.UseVisualStyleBackColor = true;
@@ -80,9 +83,10 @@ namespace Coursework_Game
             // btnUp
             // 
             this.btnUp.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUp.Location = new System.Drawing.Point(568, 517);
+            this.btnUp.Location = new System.Drawing.Point(757, 636);
+            this.btnUp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(124, 38);
+            this.btnUp.Size = new System.Drawing.Size(165, 47);
             this.btnUp.TabIndex = 3;
             this.btnUp.Text = "UP";
             this.btnUp.UseVisualStyleBackColor = true;
@@ -91,9 +95,10 @@ namespace Coursework_Game
             // btnDown
             // 
             this.btnDown.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDown.Location = new System.Drawing.Point(568, 561);
+            this.btnDown.Location = new System.Drawing.Point(757, 690);
+            this.btnDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(124, 38);
+            this.btnDown.Size = new System.Drawing.Size(165, 47);
             this.btnDown.TabIndex = 4;
             this.btnDown.Text = "DOWN";
             this.btnDown.UseVisualStyleBackColor = true;
@@ -101,15 +106,16 @@ namespace Coursework_Game
             // 
             // Game
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 596);
+            this.ClientSize = new System.Drawing.Size(1112, 734);
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnUp);
             this.Controls.Add(this.btnAddTime);
             this.Controls.Add(this.lblTimer);
             this.Controls.Add(this.pboxAvatar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Game";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Game";
