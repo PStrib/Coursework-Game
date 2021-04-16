@@ -43,7 +43,7 @@ namespace Coursework_Game
         private const int X_ELEMENTS = 10;
         private const int Y_ELEMENTS = 10;
         private const int Z_ELEMENTS = 5;
-        private const int MINES = 15;
+        private const int MINES = 10;
         private const int NON_MINES = (X_ELEMENTS * Y_ELEMENTS * Z_ELEMENTS) - MINES;
 
         private User user;
