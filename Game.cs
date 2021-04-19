@@ -28,11 +28,6 @@ namespace Coursework_Game
                 this.y = y;
                 this.z = z;
             }
-
-            public override string ToString()
-            {
-                return $"Square({x}, {y}, {z}, hasmine={hasMine}, adjacencies={adjacencies})";
-            }
         }
 
         // Controls the positioning on the screen of the button panel
@@ -43,7 +38,7 @@ namespace Coursework_Game
         private const int X_ELEMENTS = 10;
         private const int Y_ELEMENTS = 10;
         private const int Z_ELEMENTS = 5;
-        private const int MINES = 10;
+        private const int MINES = 12;
         private const int NON_MINES = (X_ELEMENTS * Y_ELEMENTS * Z_ELEMENTS) - MINES;
 
         private User user;
