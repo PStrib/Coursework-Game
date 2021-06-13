@@ -35,24 +35,17 @@ namespace Coursework_Game
         }
 
         // Controls the positioning on the screen of the button panel
-        private const int ELEMENT_SIZE = 50;
+        private const int ELEMENT_SIZE = 5;
         private const int X_START = 710;
         private const int Y_START = 250;
 
-        private const int X_ELEMENTS = 10;
-        private const int Y_ELEMENTS = 10;
-        private const int MINES = 10;
-        private const int NON_MINES = (X_ELEMENTS * Y_ELEMENTS) - MINES;
-
-        private User user;
-
-        private int secondsElapsed = 0;
+        private const int X_ELEMENTS = 100;
+        private const int Y_ELEMENTS = 100;
         
         private int nonMinesRevealed = 0;
         private int flagsPlacedCorrectly = 0;
         private int flagsPlacedIncorrectly = 0;
         // isGameLost is only true if the user left clicks an unflagged mine.
-        private bool isGameLost = false;
 
         // Buttons are placed on the form for the user to see and squares are just info about the buttons
         private Button[,] buttons = new Button[X_ELEMENTS, Y_ELEMENTS];
@@ -65,7 +58,6 @@ namespace Coursework_Game
         public Game()
         {
             generateBoard();
-            placeMines();
             updateSquares();
         }
 
@@ -96,21 +88,6 @@ namespace Coursework_Game
             }
         }
 
-        private void placeMines()
-        {
-            // For next time try shuffling
-            for (int i = 0; i < MINES; i++)
-            {
-                int x, y;
-                do
-                {
-                    x = random.Next(Y_ELEMENTS);
-                    y = random.Next(X_ELEMENTS);
-                }
-                while ((gameBoard[x+1, y+1] == true)) ;
-                gameBoard[x+1, y+1] = true;
-            }
-        }
         private void updateSquares()
         {
             for (int x = 0; x < X_ELEMENTS; x++)
@@ -198,8 +175,6 @@ namespace Coursework_Game
             square.revealed = true;
         }
 
-
-
         private void btnGameButton_Click(object sender, EventArgs e)
         {
             var button = sender as Button;
@@ -213,16 +188,6 @@ namespace Coursework_Game
                 default:
                     gameButtonLeftClick(button);
                     break;
-            }
-
-            if (isGameLost)
-            {
-                return; // If user has been exploded, we don't want them to be able trigger a win state
-            }
-
-            if (haveIWon())
-            {
-                gameWon();
             }
         }
 
@@ -284,7 +249,6 @@ namespace Coursework_Game
 
             if (square.hasMine)
             {
-                gameLost();
                 return;
             }
 
@@ -295,24 +259,6 @@ namespace Coursework_Game
             }
             
             floodFill(x, y);     
-        }
-
-        private void gameTimer_Tick(object sender, EventArgs e)
-        {
-            secondsElapsed += 1;
-            refreshTime();            
-        }
-
-        private void btnAddTime_Click(object sender, EventArgs e)
-        {
-            secondsElapsed += 5;
-            refreshTime();
-        }
-
-        private void refreshTime()
-        {
-            TimeSpan timeElapsed = new TimeSpan(0, 0, secondsElapsed);
-            lblTimer.Text = $"{timeElapsed:mm\\:ss}";
         }
     }
 }
