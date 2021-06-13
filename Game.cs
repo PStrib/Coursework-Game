@@ -62,11 +62,8 @@ namespace Coursework_Game
 
         Random random = new Random();
 
-        public Game(User user)
+        public Game()
         {
-            this.user = user;
-            InitializeComponent();
-            pboxAvatar.Image = user.Avatar;
             generateBoard();
             placeMines();
             updateSquares();
